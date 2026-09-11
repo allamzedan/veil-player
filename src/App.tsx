@@ -61,6 +61,7 @@ import {
 import { useLanguage } from './hooks/useLanguage'
 import { t } from './i18n'
 import type { YouTubeMediaSource } from './types/mediaSource'
+import { YOUTUBE_PROVIDER_ENABLED } from './lib/providerFeatures'
 import {
   clearDebugFlags,
   isMatchingDebugEnabled,
@@ -118,9 +119,11 @@ function AppContent({
     void openVideo()
   }
   const handleOpenYouTube = (): void => {
+    if (!YOUTUBE_PROVIDER_ENABLED) return
     setOpenYouTubeOpen(true)
   }
   const handleLoadYouTube = useCallback(async (source: YouTubeMediaSource): Promise<void> => {
+    if (!YOUTUBE_PROVIDER_ENABLED) return
     setOpenYouTubeOpen(false)
     await runGuardedRecentOpen({
       runIfAllowed,
@@ -473,11 +476,11 @@ function AppContent({
         setSettingsOpen(true)
         return
       }
-      if (action === 'openYouTube') {
+      if (YOUTUBE_PROVIDER_ENABLED && action === 'openYouTube') {
         setOpenYouTubeOpen(true)
         return
       }
-      if (typeof action === 'object' && action.type === 'openYouTubeUrl') {
+      if (YOUTUBE_PROVIDER_ENABLED && typeof action === 'object' && action.type === 'openYouTubeUrl') {
         const parsed = parseYouTubeUrl(action.url)
         if (!parsed.ok) {
           pushErrorToast(parsed.message)
@@ -974,7 +977,7 @@ function AppContent({
             <HomeLobby
               compact
               onOpenVideo={handleOpenVideo}
-              onOpenYouTube={handleOpenYouTube}
+              onOpenYouTube={YOUTUBE_PROVIDER_ENABLED ? handleOpenYouTube : undefined}
               onLoadTrack={onHomeLoadTrack}
               onLearnMore={() => setFirstRunOpen(true)}
             />
@@ -1024,7 +1027,7 @@ function AppContent({
       <ShortcutHelp open={shortcutHelpOpen} onClose={() => setShortcutHelpOpen(false)} />
       <AboutDialog open={aboutOpen} onClose={() => setAboutOpen(false)} />
       <OpenYouTubeDialog
-        open={openYouTubeOpen}
+        open={YOUTUBE_PROVIDER_ENABLED && openYouTubeOpen}
         onClose={() => setOpenYouTubeOpen(false)}
         onLoad={handleLoadYouTube}
       />

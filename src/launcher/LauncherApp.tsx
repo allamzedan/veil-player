@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import veilLogo from '../assets/veil-logo.png'
 import { useLanguage } from '../hooks/useLanguage'
+import { YOUTUBE_PROVIDER_ENABLED } from '../lib/providerFeatures'
 import { APP_VERSION } from '../lib/appVersion'
 import { formatMediaDuration, formatRecentOpened } from '../lib/recentDisplay'
 import type { VeilBadgeKind } from '../lib/recentVeils'
@@ -110,7 +111,7 @@ export default function LauncherApp() {
   }, [bridgeReady])
 
   const recentVideos = useMemo(
-    () => history.videos.slice(0, DISPLAY_RECENT_COUNT),
+    () => history.videos.filter((entry) => YOUTUBE_PROVIDER_ENABLED || entry.kind !== 'youtube').slice(0, DISPLAY_RECENT_COUNT),
     [history.videos]
   )
   const recentVeils = useMemo(
@@ -211,9 +212,11 @@ export default function LauncherApp() {
             <button type="button" className="launcher-btn launcher-btn--primary" onClick={onOpenVideo} disabled={fileDialogPending}>
               {t('home.openVideo')}
             </button>
-            <button type="button" className="launcher-btn launcher-btn--secondary" onClick={onOpenYouTube}>
-              {t('home.openYouTube')}
-            </button>
+            {YOUTUBE_PROVIDER_ENABLED ? (
+              <button type="button" className="launcher-btn launcher-btn--secondary" onClick={onOpenYouTube}>
+                {t('home.openYouTube')}
+              </button>
+            ) : null}
             <button type="button" className="launcher-btn launcher-btn--secondary" onClick={onLoadVeil} disabled={fileDialogPending}>
               {t('home.loadTrack')}
             </button>

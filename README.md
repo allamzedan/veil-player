@@ -1,5 +1,7 @@
 # VEIL Player Desktop
 
+**Release candidate: VEIL Player Desktop 0.8.0-RC2**
+
 VEIL Player Desktop is a local-first Windows media player and a **non-normative reference implementation** of the [VEIL interoperability specification](https://github.com/allamzedan/veil). It applies separate `.veil` playback instructions without modifying the source media.
 
 The canonical VEIL specification remains authoritative over implementation behavior. This repository contains application source, not normative VEIL material.
@@ -59,6 +61,12 @@ npm run dist
 Packaging may download Electron/electron-builder support archives. Generated packages belong in release artifacts, not source history. Official binaries, if released, will be distributed separately through GitHub Releases with the applicable third-party notices. Official binary releases are built only from a reviewed dependency state and receive artifact-level security and license validation before distribution.
 
 ## YouTube provider configuration
+
+The source contains an optional, technically validated YouTube provider integration. The official 0.8.0-RC2 Windows binary is built with that provider disabled pending provider-policy confirmation. Technical validation does not imply provider distribution permission.
+
+Provider-disabled production builds are the default: run `npm run dist`.
+
+Developer/local provider builds require `VEIL_ENABLE_YOUTUBE_PROVIDER=true` at build time. Any provider-enabled build remains subject to applicable YouTube policies. No provider credential is included.
 
 Optional metadata access reads the API key only from the `VEIL_YOUTUBE_DATA_API_KEY` environment variable. Never commit a literal key or an environment file.
 

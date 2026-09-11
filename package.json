@@ -1,6 +1,6 @@
 {
   "name": "veil-player",
-  "version": "0.8.0",
+  "version": "0.8.0-rc.2",
   "description": "Non-normative desktop reference implementation for the VEIL interoperability specification.",
   "author": "Allam Zedan",
   "private": false,

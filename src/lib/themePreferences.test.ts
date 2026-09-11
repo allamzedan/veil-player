@@ -62,7 +62,7 @@ describe('themePreferences', () => {
   it('keeps old legacy interface preferences safe and does not change app or schema versions', () => {
     localStorage.setItem('veil:uiRefreshV1', '0')
     expect(readThemePreference()).toBe('dark')
-    expect(APP_VERSION).toBe('0.8.0')
+    expect(APP_VERSION).toBe('0.8.0-rc.2')
     expect(SUPPORTED_TRACK_VERSION).toBe('1.6.0')
   })
   it('persists an explicit System choice without changing it to Dark', () => {

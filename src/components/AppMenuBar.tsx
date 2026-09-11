@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom'
 import { useLanguage } from '../hooks/useLanguage'
 import { t } from '../i18n'
 import { runAppMenuAction, runOpenRecentTarget, type AppMenuActions } from '../lib/appMenuBridge'
+import { YOUTUBE_PROVIDER_ENABLED } from '../lib/providerFeatures'
 import { openSidebarPanel } from '../lib/sidebarPanelBridge'
 import {
   requestOpenSubtitleSheet,
@@ -381,7 +382,10 @@ export default function AppMenuBar({
   const language = useLanguage()
   const menuBarRef = useRef<HTMLDivElement | null>(null)
   const [openMenuId, setOpenMenuId] = useState<string | null>(null)
-  const { targets: recentTargets, clearRecent } = useRecentHistory(window.veil)
+  const { targets: allRecentTargets, clearRecent } = useRecentHistory(window.veil)
+  const recentTargets = allRecentTargets.filter(
+    (target) => YOUTUBE_PROVIDER_ENABLED || target.kind !== 'youtube'
+  )
 
   const hasVideo = hasPlayableMediaLoaded(videoSrc, mediaKind, mediaSource)
   const isAudioMode = mediaKind === 'audio'
@@ -485,11 +489,11 @@ export default function AppMenuBar({
           label: t('menu.file'),
           items: [
             { id: 'openVideo', label: t('menu.openVideo'), action: () => run('openVideo') },
-            {
+            ...(YOUTUBE_PROVIDER_ENABLED ? [{
               id: 'openYouTube',
               label: t('menu.openYouTube'),
               action: () => run('openYouTube')
-            },
+            }] : []),
             openRecentSubmenu,
             menuSeparator(),
             {
@@ -649,11 +653,11 @@ export default function AppMenuBar({
         label: t('menu.file'),
         items: [
           { id: 'openVideo', label: t('menu.openVideo'), action: () => run('openVideo') },
-          {
+          ...(YOUTUBE_PROVIDER_ENABLED ? [{
             id: 'openYouTube',
             label: t('menu.openYouTube'),
             action: () => run('openYouTube')
-          },
+          }] : []),
           openRecentSubmenu,
           menuSeparator(),
           {

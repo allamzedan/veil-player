@@ -36,6 +36,10 @@ import { ContentReviewPreferencesStore } from './lib/contentReviewPreferencesSto
 import { registerContentReviewPreferencesHandlers } from './ipc/contentReviewPreferences'
 
 const isDev = !app.isPackaged
+declare const __VEIL_ENABLE_YOUTUBE_PROVIDER__: boolean
+const youtubeProviderEnabled =
+  typeof __VEIL_ENABLE_YOUTUBE_PROVIDER__ !== 'undefined' &&
+  __VEIL_ENABLE_YOUTUBE_PROVIDER__ === true
 
 let mainWindow: BrowserWindow | null = null
 let launcherWindow: BrowserWindow | null = null
@@ -570,7 +574,7 @@ app.whenReady().then(() => {
   registerDialogHandlers()
   registerTrackFileHandlers()
   registerExternalHandlers()
-  registerYouTubeMetadataHandlers()
+  if (youtubeProviderEnabled) registerYouTubeMetadataHandlers()
   registerMatchingVeilHandlers()
   registerRecentHistoryHandlers(
     new RecentHistoryStore(join(app.getPath('userData'), 'recent-history.json'))

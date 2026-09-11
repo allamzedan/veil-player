@@ -1,0 +1,1 @@
+declare const __VEIL_ENABLE_YOUTUBE_PROVIDER__: boolean
