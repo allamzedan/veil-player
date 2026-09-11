@@ -56,7 +56,7 @@ To produce Windows installer and portable artifacts locally:
 npm run dist
 ```
 
-Packaging may download Electron/electron-builder support archives. Generated packages belong in release artifacts, not source history. Official binaries, if released, will be distributed separately through GitHub Releases with the applicable third-party notices.
+Packaging may download Electron/electron-builder support archives. Generated packages belong in release artifacts, not source history. Official binaries, if released, will be distributed separately through GitHub Releases with the applicable third-party notices. Official binary releases are built only from a reviewed dependency state and receive artifact-level security and license validation before distribution.
 
 ## YouTube provider configuration
 
@@ -86,4 +86,4 @@ Copyright 2026 Allam Zedan
 
 VEIL Player Desktop source is licensed under the [Apache License 2.0](LICENSE).
 
-The canonical VEIL standard is licensed separately in its own repository. Third-party dependencies and packaged runtime components retain their respective licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Apache License 2.0 applies to this Desktop source and does not imply affiliation with the Apache Software Foundation.
+The VEIL interoperability specification is licensed separately in the canonical [allamzedan/veil](https://github.com/allamzedan/veil) repository. Any OWFa patent assurance associated with the VEIL specification is separate from, and is not, the Apache License 2.0 copyright license for VEIL Player Desktop source. Third-party dependencies and packaged runtime components retain their respective licenses; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Apache License 2.0 applies to this Desktop source and does not imply affiliation with the Apache Software Foundation.
