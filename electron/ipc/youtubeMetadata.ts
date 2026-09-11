@@ -27,13 +27,17 @@ export async function fetchOfficialYouTubeMetadata(
   let result: YouTubeMetadataLookupResult
   try {
     const url = new URL('https://www.googleapis.com/youtube/v3/videos')
-    url.searchParams.set('part', 'snippet')
+    url.searchParams.set('part', 'snippet,status')
     url.searchParams.set('id', videoId)
     url.searchParams.set('key', apiKey.trim())
     const response = await fetcher(url, { method: 'GET', redirect: 'error' })
     if (!response.ok) throw new Error(`YouTube Data API ${response.status}`)
     const body = await response.json() as {
-      items?: Array<{ id?: string; snippet?: { title?: string; channelTitle?: string; description?: string; publishedAt?: string } }>
+      items?: Array<{
+        id?: string
+        snippet?: { title?: string; channelTitle?: string; description?: string; publishedAt?: string }
+        status?: { madeForKids?: boolean }
+      }>
     }
     const item = body.items?.find((candidate) => candidate.id === videoId)
     if (!item?.snippet) {
@@ -48,6 +52,7 @@ export async function fetchOfficialYouTubeMetadata(
           channelTitle: item.snippet.channelTitle,
           description: item.snippet.description,
           publishedAt: item.snippet.publishedAt,
+          madeForKids: item.status?.madeForKids === true,
           fetchedAt: new Date().toISOString()
         }
       }
@@ -55,10 +60,12 @@ export async function fetchOfficialYouTubeMetadata(
   } catch {
     result = { configured: true, status: 'error' }
   }
-  cache.set(key, {
-    result,
-    expiresAt: Date.now() + (result.status === 'ready' ? SUCCESS_TTL_MS : FAILURE_TTL_MS)
-  })
+  if (result.metadata?.madeForKids !== true) {
+    cache.set(key, {
+      result,
+      expiresAt: Date.now() + (result.status === 'ready' ? SUCCESS_TTL_MS : FAILURE_TTL_MS)
+    })
+  }
   return result
 }
 

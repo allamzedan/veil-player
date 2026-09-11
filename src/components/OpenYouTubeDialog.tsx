@@ -4,6 +4,13 @@ import { t } from '../i18n'
 import { parseYouTubeUrl } from '../lib/youtubeUrl'
 import type { YouTubeMediaSource } from '../types/mediaSource'
 import Modal from './Modal'
+import {
+  GOOGLE_PRIVACY_POLICY_URL,
+  hasYouTubeProviderConsent,
+  recordYouTubeProviderConsent,
+  VEIL_PRIVACY_POLICY_URL,
+  YOUTUBE_TERMS_URL
+} from '../lib/youtubeProviderConsent'
 
 interface OpenYouTubeDialogProps {
   open: boolean
@@ -17,6 +24,7 @@ export default function OpenYouTubeDialog({ open, onClose, onLoad }: OpenYouTube
   const inputRef = useRef<HTMLInputElement>(null)
   const [urlInput, setUrlInput] = useState('')
   const [error, setError] = useState<string | null>(null)
+  const [accepted, setAccepted] = useState(false)
 
   useEffect(() => {
     if (!open) {
@@ -24,6 +32,7 @@ export default function OpenYouTubeDialog({ open, onClose, onLoad }: OpenYouTube
     }
     setUrlInput('')
     setError(null)
+    setAccepted(hasYouTubeProviderConsent(window.localStorage))
     const timer = window.setTimeout(() => {
       inputRef.current?.focus()
       inputRef.current?.select()
@@ -32,13 +41,22 @@ export default function OpenYouTubeDialog({ open, onClose, onLoad }: OpenYouTube
   }, [open])
 
   const submit = (): void => {
+    if (!accepted) {
+      setError('Accept the privacy policy and YouTube Terms notice before using YouTube.')
+      return
+    }
     const parsed = parseYouTubeUrl(urlInput)
     if (!parsed.ok) {
       setError(parsed.message)
       return
     }
     setError(null)
+    recordYouTubeProviderConsent(window.localStorage)
     onLoad(parsed.source)
+  }
+
+  const openPolicy = (url: string): void => {
+    void window.veil?.openExternalUrl?.(url)
   }
 
   return (
@@ -89,6 +107,17 @@ export default function OpenYouTubeDialog({ open, onClose, onLoad }: OpenYouTube
             {error}
           </p>
         ) : null}
+        <label className={'open-youtube-dialog__consent'}>
+          <input type={'checkbox'} checked={accepted} onChange={(event) => setAccepted(event.target.checked)} />
+          <span>I agree to the VEIL Player privacy policy and understand that using YouTube means I agree to the YouTube Terms of Service.</span>
+        </label>
+        <p className={'open-youtube-dialog__policy-links'}>
+          <button type={'button'} className={'link-button'} onClick={() => openPolicy(VEIL_PRIVACY_POLICY_URL)}>Privacy policy</button>
+          {' · '}
+          <button type={'button'} className={'link-button'} onClick={() => openPolicy(YOUTUBE_TERMS_URL)}>YouTube Terms</button>
+          {' · '}
+          <button type={'button'} className={'link-button'} onClick={() => openPolicy(GOOGLE_PRIVACY_POLICY_URL)}>Google Privacy Policy</button>
+        </p>
       </form>
     </Modal>
   )

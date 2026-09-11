@@ -14,6 +14,7 @@ export interface YouTubeMetadata {
   channelTitle?: string
   description?: string
   publishedAt?: string
+  madeForKids?: boolean
   duration?: number
   canonicalUrl: string
   source: YouTubeMetadataSource
@@ -26,6 +27,6 @@ export interface YouTubeMetadataLookupResult {
   status: 'ready' | 'unavailable' | 'error'
   metadata?: Pick<
     YouTubeMetadata,
-    'videoId' | 'title' | 'channelTitle' | 'description' | 'publishedAt' | 'fetchedAt'
+    'videoId' | 'title' | 'channelTitle' | 'description' | 'publishedAt' | 'madeForKids' | 'fetchedAt'
   >
 }

@@ -11,7 +11,7 @@ afterEach(() => {
 })
 
 describe('YouTube recent title metadata lifecycle', () => {
-  it('records a fallback first and enriches it from later mixed-language metadata', () => {
+  it('records a generic identity and keeps later provider metadata transient', () => {
     const recordRecentVideo = vi.fn(() => Promise.resolve({ videos: [], veils: [] }))
     const updateTitle = vi.fn(() => Promise.resolve({ videos: [], veils: [] }))
     vi.stubGlobal('window', {
@@ -33,8 +33,7 @@ describe('YouTube recent title metadata lifecycle', () => {
       name: 'YouTube video',
       videoId: 'Royv6Vqz7S4'
     }))
-    expect(updateTitle).toHaveBeenCalledOnce()
-    expect(updateTitle).toHaveBeenCalledWith('Royv6Vqz7S4', 'أحمد سعد - Mekassarat')
+    expect(updateTitle).not.toHaveBeenCalled()
   })
 
   it('does not treat fallback or identity labels as real titles', () => {

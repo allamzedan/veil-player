@@ -26,7 +26,7 @@ afterEach(async () => {
 })
 
 describe('YouTube recent title IPC propagation', () => {
-  it('enriches the same item and broadcasts the updated snapshot to launcher and menu windows', async () => {
+  it('keeps API titles transient and broadcasts the unchanged minimized snapshot', async () => {
     temporaryDirectory = await mkdtemp(join(tmpdir(), 'veil-recent-title-broadcast-'))
     const store = new RecentHistoryStore(join(temporaryDirectory, 'recent-history.json'))
     await store.recordVideo({
@@ -62,7 +62,7 @@ describe('YouTube recent title IPC propagation', () => {
       'C:\\newer.mp4',
       'Royv6Vqz7S4'
     ])
-    expect(history.videos[1]).toMatchObject({ name: 'أحمد سعد - Mekassarat', openedAt: 10 })
+    expect(history.videos[1]).toMatchObject({ name: 'YouTube video', openedAt: 10 })
     expect(launcherSend).toHaveBeenCalledWith('recentHistory:changed', updated)
     expect(menuSend).toHaveBeenCalledWith('recentHistory:changed', updated)
   })

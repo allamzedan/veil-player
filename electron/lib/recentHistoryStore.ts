@@ -63,6 +63,18 @@ function validVideo(entry: unknown): entry is PersistedRecentVideo {
   return typeof candidate.filePath === 'string' && candidate.filePath.length > 0
 }
 
+export function minimizePersistedYouTubeEntry(entry: PersistedRecentVideo): PersistedRecentVideo {
+  if (recentVideoKind(entry) !== 'youtube') return entry
+  return {
+    kind: 'youtube',
+    name: 'YouTube video',
+    mediaKey: entry.videoId ?? entry.mediaKey,
+    videoId: entry.videoId,
+    canonicalUrl: entry.canonicalUrl,
+    openedAt: entry.openedAt
+  }
+}
+
 function validVeil(entry: unknown): entry is PersistedRecentVeil {
   if (!entry || typeof entry !== 'object') return false
   const candidate = entry as Partial<PersistedRecentVeil>
@@ -86,11 +98,12 @@ export class RecentHistoryStore {
 
   recordVideo(entry: PersistedRecentVideo): Promise<void> {
     if (!validVideo(entry)) return Promise.resolve()
+    const persistedEntry = minimizePersistedYouTubeEntry(entry)
     return this.update((history) => ({
       ...history,
       videos: [
-        entry,
-        ...history.videos.filter((item) => recentVideoKey(item) !== recentVideoKey(entry))
+        persistedEntry,
+        ...history.videos.filter((item) => recentVideoKey(item) !== recentVideoKey(persistedEntry))
       ].slice(0, MAX_RECENT)
     }))
   }
@@ -143,23 +156,9 @@ export class RecentHistoryStore {
     }))
   }
   updateYouTubeTitle(videoId: string, title: string): Promise<void> {
-    const normalizedTitle = title.trim()
-    if (!videoId || !normalizedTitle) return Promise.resolve()
-    const identity = ('youtube:' + videoId).toLocaleLowerCase()
-    return this.update((history) => {
-      const existing = history.videos.find((entry) => recentVideoKey(entry) === identity)
-      if (!existing) return history
-      let included = false
-      return {
-        ...history,
-        videos: history.videos.flatMap((entry) => {
-          if (recentVideoKey(entry) !== identity) return [entry]
-          if (included) return []
-          included = true
-          return [{ ...existing, name: normalizedTitle }]
-        })
-      }
-    })
+    void videoId
+    void title
+    return Promise.resolve()
   }
   updateVideoDuration(name: string, durationSeconds: number): Promise<void> {
     if (!name || !Number.isFinite(durationSeconds) || durationSeconds <= 0) return Promise.resolve()
@@ -203,7 +202,9 @@ export class RecentHistoryStore {
     try {
       const parsed = JSON.parse(await readFile(this.filePath, 'utf8')) as Partial<PersistedRecentHistory>
       return {
-        videos: Array.isArray(parsed.videos) ? parsed.videos.filter(validVideo).slice(0, MAX_RECENT) : [],
+        videos: Array.isArray(parsed.videos)
+          ? parsed.videos.filter(validVideo).map(minimizePersistedYouTubeEntry).slice(0, MAX_RECENT)
+          : [],
         veils: Array.isArray(parsed.veils) ? parsed.veils.filter(validVeil).slice(0, MAX_RECENT) : []
       }
     } catch {

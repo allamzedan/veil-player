@@ -10980,7 +10980,13 @@ html:not(.motion-reduced) .app--ui-refresh-v1 .inspector-panel__action-menu-item
   height: 100%;
   z-index: 1;
   background: #000;
+  min-width: 200px;
+  min-height: 200px;
 }
+
+.open-youtube-dialog__consent { display: flex; gap: 0.55rem; align-items: flex-start; margin-top: 1rem; }
+.open-youtube-dialog__policy-links { margin: 0.6rem 0 0; }
+.link-button { background: none; border: 0; color: var(--accent); padding: 0; text-decoration: underline; cursor: pointer; }
 
 .youtube-player-stage iframe,
 .youtube-player-stage > div {

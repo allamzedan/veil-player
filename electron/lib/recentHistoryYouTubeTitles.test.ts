@@ -11,8 +11,8 @@ afterEach(async () => {
   temporaryDirectory = null
 })
 
-describe('RecentHistoryStore YouTube title enrichment', () => {
-  it('updates the existing canonical identity without duplication or reordering', async () => {
+describe('RecentHistoryStore YouTube API-data minimization', () => {
+  it('does not persist provider titles or reorder the canonical identity', async () => {
     temporaryDirectory = await mkdtemp(join(tmpdir(), 'veil-recent-youtube-title-'))
     const store = new RecentHistoryStore(join(temporaryDirectory, 'recent-history.json'))
     await store.recordVideo({
@@ -30,7 +30,7 @@ describe('RecentHistoryStore YouTube title enrichment', () => {
     expect(history.videos[0].name).toBe('newer.mp4')
     expect(history.videos[1]).toMatchObject({
       videoId: 'Royv6Vqz7S4',
-      name: 'أحمد سعد - Mekassarat (Official Music Video)',
+      name: 'YouTube video',
       openedAt: 10
     })
   })

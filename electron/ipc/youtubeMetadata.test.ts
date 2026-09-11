@@ -19,14 +19,29 @@ describe('official YouTube Data API metadata lookup', () => {
       json: async () => ({
         items: [{
           id: 'dQw4w9WgXcQ',
-          snippet: { title: 'Title', channelTitle: 'Channel', description: 'Body', publishedAt: '2020-01-01T00:00:00Z' }
+          snippet: { title: 'Title', channelTitle: 'Channel', description: 'Body', publishedAt: '2020-01-01T00:00:00Z' },
+          status: { madeForKids: false }
         }]
       })
     })
     const first = await fetchOfficialYouTubeMetadata('dQw4w9WgXcQ', 'test-key', fetcher)
     const second = await fetchOfficialYouTubeMetadata('dQw4w9WgXcQ', 'test-key', fetcher)
-    expect(first).toMatchObject({ configured: true, status: 'ready', metadata: { title: 'Title', channelTitle: 'Channel', description: 'Body' } })
+    expect(first).toMatchObject({ configured: true, status: 'ready', metadata: { title: 'Title', channelTitle: 'Channel', description: 'Body', madeForKids: false } })
     expect(second).toEqual(first)
     expect(fetcher).toHaveBeenCalledTimes(1)
+    const requested = fetcher.mock.calls[0][0] as URL
+    expect(requested.searchParams.get('part')).toBe('snippet,status')
+  })
+
+  it('parses Made-for-Kids status and does not cache that metadata', async () => {
+    const fetcher = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({ items: [{ id: 'dQw4w9WgXcQ', snippet: { title: 'Kids' }, status: { madeForKids: true } }] })
+    })
+    const first = await fetchOfficialYouTubeMetadata('dQw4w9WgXcQ', 'test-key', fetcher)
+    const second = await fetchOfficialYouTubeMetadata('dQw4w9WgXcQ', 'test-key', fetcher)
+    expect(first.metadata?.madeForKids).toBe(true)
+    expect(second.metadata?.madeForKids).toBe(true)
+    expect(fetcher).toHaveBeenCalledTimes(2)
   })
 })

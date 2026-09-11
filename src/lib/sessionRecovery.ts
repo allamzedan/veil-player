@@ -87,7 +87,6 @@ export function updateRecentVideoDuration(name: string, durationSeconds: number)
 }
 
 export function updateRecentYouTubeTitle(videoId: string, title: string | null | undefined): void {
-  const normalizedTitle = normalizeYouTubeRecentTitle(videoId, title)
-  if (typeof window === 'undefined' || !videoId || !normalizedTitle) return
-  void window.veil?.updateRecentYouTubeTitle(videoId, normalizedTitle).catch(() => undefined)
+  void videoId
+  void title
 }

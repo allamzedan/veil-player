@@ -64,6 +64,8 @@ Optional metadata access reads the API key only from the `VEIL_YOUTUBE_DATA_API_
 
 Provider functionality uses YouTube APIs/services and is subject to YouTube's applicable terms and policies. The project is not endorsed by YouTube or Google. Provider-enabled binary distribution remains subject to a separate provider-compliance review; this source candidate does not claim that review is complete.
 
+YouTube support is optional and the canonical VEIL standard is independent of it. Without a Data API key, IFrame playback remains available but Data API descriptions and Made-for-Kids lookup are unavailable. Provider use requires acknowledgement of the [VEIL Player privacy policy](PRIVACY.md) and the [YouTube Terms of Service](https://www.youtube.com/t/terms); Google's handling of data is described by the [Google Privacy Policy](https://policies.google.com/privacy). YouTube-derived display metadata is transient and is not stored in recent history. Mask and all visual overlays remain unavailable over the YouTube player. Timeline Skip and Mute use documented IFrame API controls, but their automated product-specific use remains **PROVIDER CONFIRMATION REQUIRED**; no YouTube or Google approval or endorsement is claimed.
+
 ## Security and privacy
 
 VEIL is local-first and contains no analytics SDK or media-upload service. Imported `.veil` data is treated as untrusted: malformed known data, duplicate JSON members, and resource-limit violations are rejected before runtime actions execute. Unknown supported-forward data remains inert.

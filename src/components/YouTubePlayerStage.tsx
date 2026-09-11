@@ -167,7 +167,7 @@ const YouTubePlayerStage = forwardRef<YouTubePlayerStageHandle, YouTubePlayerSta
       const adapter = new YouTubeAdapter({
         hostElement: host,
         source,
-        host: 'https://www.youtube.com',
+        host: 'https://www.youtube-nocookie.com',
         onError: (error) => {
           if (cancelled) {
             return

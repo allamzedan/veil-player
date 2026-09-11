@@ -77,7 +77,8 @@ describe('RecentHistoryStore', () => {
       openedAt: 2
     })
 
-    expect((await store.read()).videos.map((entry) => entry.name)).toEqual(['Updated title'])
+    expect((await store.read()).videos.map((entry) => entry.name)).toEqual(['YouTube video'])
+    expect((await store.read()).videos[0]).not.toHaveProperty('durationSeconds')
     await store.removeVideo('dQw4w9WgXcQ')
     expect((await store.read()).videos).toEqual([])
   })
