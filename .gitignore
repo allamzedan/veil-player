@@ -1,0 +1,16 @@
+.idea/
+node_modules/
+dist/
+out/
+release/
+coverage/
+.DS_Store
+*.log
+.env
+.env.*
+audit-output/
+tmp-ui-verify/
+*.blockmap
+builder-debug.yml
+builder-effective-config.yaml
+phase10d1-synthetic.*

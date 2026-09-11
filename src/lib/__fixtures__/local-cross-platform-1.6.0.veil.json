@@ -1,0 +1,86 @@
+{
+  "version": "1.6.0",
+  "app": "VEIL",
+  "appVersion": "0.8.0",
+  "exportedAt": "2026-08-22T12:00:00.000Z",
+  "video": {
+    "name": "旅行 — café.mp4",
+    "duration": 180.5,
+    "fileSize": 123456789,
+    "resolution": {
+      "width": 1920,
+      "height": 1080
+    },
+    "fingerprint": {
+      "method": "metadata-only",
+      "value": "sha256:cross-platform-fixture"
+    }
+  },
+  "globalOffsetSeconds": 0.25,
+  "trackMetadata": {
+    "title": "Пример — café 演示",
+    "description": "Portable sidecar metadata",
+    "author": "VEIL 测试",
+    "tags": ["unicode", "portable"],
+    "language": "ja-JP",
+    "notes": "Keep this text unchanged."
+  },
+  "subtitleCover": {
+    "mode": "regionCover",
+    "regionRect": {
+      "xPercent": 10,
+      "yPercent": 70,
+      "widthPercent": 80,
+      "heightPercent": 20
+    }
+  },
+  "items": [
+    {
+      "id": "mask-1",
+      "type": "mask",
+      "start": 12.25,
+      "end": 18.5,
+      "enabled": true,
+      "label": "重要な文字",
+      "rect": {
+        "xPercent": 20,
+        "yPercent": 25,
+        "widthPercent": 30,
+        "heightPercent": 15
+      },
+      "style": {
+        "mode": "solid",
+        "color": "#000000",
+        "opacity": 0.85,
+        "presentation": "dim"
+      },
+      "fadeInMs": 120,
+      "fadeOutMs": 240
+    },
+    {
+      "id": "mute-1",
+      "type": "mute",
+      "start": 30,
+      "end": 34.75,
+      "enabled": true,
+      "label": "音声区間"
+    },
+    {
+      "id": "skip-1",
+      "type": "skip",
+      "start": 60.5,
+      "end": 72.125,
+      "enabled": false,
+      "notes": "Optional skip"
+    },
+    {
+      "id": "bookmark-1",
+      "type": "bookmark",
+      "start": 99.875,
+      "end": 99.875,
+      "enabled": true,
+      "label": "Résumé 📌",
+      "notes": "Review this later"
+    }
+  ]
+}

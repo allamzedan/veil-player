@@ -1,0 +1,31 @@
+{
+  "version": "1.6.0",
+  "app": "VEIL",
+  "appVersion": "0.8.0",
+  "exportedAt": "2026-07-14T12:00:00.000Z",
+  "media": {
+    "kind": "youtube",
+    "provider": "youtube",
+    "videoId": "dQw4w9WgXcQ",
+    "canonicalUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "duration": 212,
+    "title": "Sample YouTube Video"
+  },
+  "globalOffsetSeconds": 0,
+  "trackMetadata": {
+    "title": "YouTube sample VEIL",
+    "summary": "Whole-media summary for this YouTube-bound track.",
+    "createdAt": "2026-07-14T12:00:00.000Z",
+    "updatedAt": "2026-07-14T12:00:00.000Z"
+  },
+  "items": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "type": "bookmark",
+      "enabled": true,
+      "start": 42,
+      "end": 42,
+      "label": "Midpoint note"
+    }
+  ]
+}

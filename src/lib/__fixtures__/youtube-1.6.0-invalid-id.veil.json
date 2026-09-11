@@ -1,0 +1,12 @@
+{
+  "version": "1.6.0",
+  "app": "VEIL",
+  "media": {
+    "kind": "youtube",
+    "provider": "youtube",
+    "videoId": "not-valid",
+    "canonicalUrl": "https://www.youtube.com/watch?v=not-valid"
+  },
+  "globalOffsetSeconds": 0,
+  "items": []
+}

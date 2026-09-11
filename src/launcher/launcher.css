@@ -1,0 +1,714 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --launcher-bg: #0b0f18;
+  --launcher-panel: rgba(19, 26, 40, 0.82);
+  --launcher-elevated: #1a2235;
+  --launcher-border: rgba(255, 255, 255, 0.08);
+  --launcher-border-strong: #27314a;
+  --launcher-brand: #6d5ce7;
+  --launcher-brand-hover: #7e70eb;
+  --launcher-text: #eef1f8;
+  --launcher-text-secondary: #9aa6bf;
+  --launcher-text-muted: #8996b2;
+  --launcher-radius: 18px;
+  --launcher-font: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --launcher-width: 720px;
+  --launcher-height: 560px;
+  --launcher-left-width: 300px;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  width: var(--launcher-width);
+  height: var(--launcher-height);
+  overflow: hidden;
+  background: transparent;
+  color: var(--launcher-text);
+  font-family: var(--launcher-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+.launcher-shell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: var(--launcher-width);
+  height: var(--launcher-height);
+  border-radius: var(--launcher-radius);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(109, 92, 231, 0.22), transparent 32%),
+    linear-gradient(145deg, #0b0f18, #101624);
+  border: 1px solid var(--launcher-border);
+  outline: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.launcher-shell button,
+.launcher-shell input,
+.launcher-shell textarea,
+.launcher-shell select,
+.launcher-shell [contenteditable='true'] {
+  user-select: auto;
+  -webkit-user-select: auto;
+}
+
+.launcher-bridge-error {
+  margin: 0 1rem 0.35rem;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid rgba(217, 92, 92, 0.45);
+  background: rgba(120, 39, 39, 0.28);
+}
+
+.launcher-bridge-error p {
+  margin: 0 0 0.45rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: #ffd8d8;
+}
+
+.launcher-chrome {
+  position: relative;
+  flex: 0 0 auto;
+  height: 2rem;
+}
+
+.launcher-chrome__drag {
+  position: absolute;
+  inset: 0;
+  -webkit-app-region: drag;
+}
+
+.launcher-chrome__controls {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.55rem;
+  display: flex;
+  gap: 0.3rem;
+  -webkit-app-region: no-drag;
+}
+
+.launcher-chrome__btn {
+  display: grid;
+  place-items: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--launcher-text-muted);
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    color 150ms ease;
+}
+
+.launcher-chrome__btn:hover,
+.launcher-chrome__btn:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--launcher-text);
+  outline: none;
+}
+
+.launcher-chrome__btn--close:hover,
+.launcher-chrome__btn--close:focus-visible {
+  background: rgba(217, 92, 92, 0.22);
+  color: #ffd8d8;
+}
+
+.launcher-body {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  padding: 0 1rem 1rem;
+  gap: 0.85rem;
+}
+
+.launcher-left {
+  --launcher-rhythm: 0.72rem;
+  flex: 0 0 var(--launcher-left-width);
+  width: var(--launcher-left-width);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--launcher-rhythm);
+  padding-top: 0.15rem;
+  -webkit-app-region: no-drag;
+}
+
+.launcher-hero-block {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-height: 0;
+  padding: 0 0.2rem;
+  transform: translateY(6px);
+  margin-bottom: calc(6px + var(--launcher-rhythm));
+}
+
+.launcher-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--launcher-rhythm);
+}
+
+.launcher-hero__logo {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 0;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+}
+
+.launcher-hero__title {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+}
+
+.launcher-hero__tagline,
+.launcher-hero__subtitle {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  line-height: 1.3;
+  color: var(--launcher-text-secondary);
+}
+
+.launcher-hero__description {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--launcher-text-secondary);
+  max-width: 15.5rem;
+}
+
+.launcher-right {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  overflow: hidden;
+  -webkit-app-region: no-drag;
+}
+
+.launcher-primary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--launcher-rhythm);
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.launcher-btn {
+  appearance: none;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  padding: 0.72rem 0.85rem;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 120ms ease;
+}
+
+.launcher-btn:active {
+  transform: translateY(1px);
+}
+
+.launcher-btn--primary {
+  background: var(--launcher-brand);
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(109, 92, 231, 0.32);
+}
+
+.launcher-btn--primary:hover,
+.launcher-btn--primary:focus-visible {
+  background: var(--launcher-brand-hover);
+  box-shadow: 0 10px 26px rgba(109, 92, 231, 0.38);
+  outline: none;
+}
+
+.launcher-btn--secondary {
+  background: var(--launcher-panel);
+  border-color: var(--launcher-border);
+  color: var(--launcher-text);
+  backdrop-filter: blur(8px);
+}
+
+.launcher-btn--secondary:hover,
+.launcher-btn--secondary:focus-visible {
+  background: rgba(26, 34, 53, 0.92);
+  border-color: rgba(255, 255, 255, 0.14);
+  outline: none;
+}
+
+.launcher-btn:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--launcher-brand-hover) 72%, white);
+  outline-offset: 2px;
+}
+
+.launcher-shortcuts {
+  min-width: 0;
+  margin-top: 1.25rem;
+}
+
+.launcher-shortcuts__title {
+  margin: 0 0 0.4rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--launcher-text-muted);
+}
+
+.launcher-shortcuts__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  display: grid;
+  gap: 0.28rem;
+  border-radius: 11px;
+  background: var(--launcher-panel);
+  border: 1px solid var(--launcher-border);
+  backdrop-filter: blur(8px);
+}
+
+.launcher-shortcuts__item {
+  font-size: 0.75rem;
+  color: var(--launcher-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.launcher-footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.35rem;
+  min-width: 0;
+}
+
+.launcher-footer__version {
+  font-size: 0.6875rem;
+  color: var(--launcher-text-muted);
+}
+
+.launcher-footer__links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.launcher-footer__link {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--launcher-text-secondary);
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.launcher-footer__link:hover,
+.launcher-footer__link:focus-visible {
+  color: var(--launcher-brand-hover);
+  outline: 2px solid color-mix(in srgb, var(--launcher-brand-hover) 55%, transparent);
+  outline-offset: 2px;
+}
+
+.launcher-footer__link:disabled {
+  cursor: default;
+  opacity: 0.45;
+  outline: none;
+}
+
+.launcher-recents {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-right: 0.1rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+.launcher-recents::-webkit-scrollbar {
+  width: 4px;
+}
+
+.launcher-recents::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.launcher-section {
+  min-width: 0;
+}
+
+.launcher-section__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.45rem;
+  min-width: 0;
+}
+
+.launcher-section__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  margin-inline-start: auto;
+  min-width: 0;
+}
+
+.launcher-section__clear {
+  border: none;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--launcher-text-secondary);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.launcher-section__clear:hover,
+.launcher-section__clear:focus-visible {
+  color: var(--launcher-brand-hover);
+  outline: 2px solid color-mix(in srgb, var(--launcher-brand-hover) 55%, transparent);
+  outline-offset: 2px;
+}
+
+.launcher-section__clear:disabled {
+  cursor: default;
+  opacity: 0.45;
+  outline: none;
+}
+
+.launcher-section__title {
+  margin: 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--launcher-text-muted);
+}
+
+.launcher-section__more {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: 0.625rem;
+  color: var(--launcher-text-muted);
+  opacity: 0.85;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.launcher-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.launcher-empty {
+  margin: 0;
+  padding: 0.55rem 0.65rem;
+  font-size: 0.75rem;
+  color: var(--launcher-text-muted);
+  border-radius: 11px;
+  background: var(--launcher-panel);
+  border: 1px solid var(--launcher-border);
+}
+
+.launcher-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  width: 100%;
+  min-width: 0;
+  min-height: 2.55rem;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: var(--launcher-panel);
+  color: inherit;
+  text-align: start;
+  font: inherit;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.launcher-row:hover,
+.launcher-row:focus-visible {
+  background: rgba(26, 34, 53, 0.92);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  outline: none;
+}
+
+.launcher-row__thumb {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 7px;
+  background:
+    linear-gradient(145deg, rgba(109, 92, 231, 0.28), rgba(26, 34, 53, 0.95)),
+    var(--launcher-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: grid;
+  place-items: center;
+}
+
+.launcher-row__thumb-icon {
+  width: 0.5rem;
+  height: 0.68rem;
+  border-radius: 2px;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+  position: relative;
+}
+
+.launcher-row__thumb-icon::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-35%, -50%);
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 5px solid rgba(255, 255, 255, 0.7);
+}
+
+.launcher-row__veil-mark {
+  flex: 0 0 auto;
+  width: 0.4rem;
+  height: 1.45rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #7c6ee6, #6d5ce7);
+  box-shadow: 0 0 10px rgba(109, 92, 231, 0.28);
+}
+
+.launcher-row__body {
+  min-width: 0;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  overflow: hidden;
+}
+
+.recent-row__title,
+.launcher-row__name {
+  min-width: 0;
+  font-size: 0.78125rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.launcher-row__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+  font-size: 0.6875rem;
+  color: var(--launcher-text-muted);
+}
+
+.launcher-row__meta-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.launcher-row__dot {
+  flex: 0 0 auto;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--launcher-text-muted);
+  opacity: 0.7;
+}
+
+.launcher-badge {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.06rem 0.38rem;
+  border-radius: 999px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.launcher-badge--familySafe {
+  color: #c9c0ff;
+  background: rgba(124, 110, 230, 0.14);
+  border-color: rgba(124, 110, 230, 0.28);
+}
+
+.launcher-badge--languageLearning {
+  color: #ffd89a;
+  background: rgba(232, 162, 58, 0.12);
+  border-color: rgba(232, 162, 58, 0.26);
+}
+
+.launcher-badge--custom {
+  color: #b8c4de;
+  background: rgba(39, 49, 74, 0.45);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.launcher-community {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  min-width: 0;
+  padding: 0.55rem 0.65rem;
+  border-radius: 10px;
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  background: var(--launcher-panel);
+  opacity: 0.72;
+  backdrop-filter: blur(8px);
+}
+
+.launcher-community__copy {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.launcher-community__title {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.launcher-community__subtitle {
+  margin: 0.12rem 0 0;
+  font-size: 0.6875rem;
+  color: var(--launcher-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.launcher-community__badge {
+  flex: 0 0 auto;
+  padding: 0.14rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--launcher-text-muted);
+  background: rgba(26, 34, 53, 0.88);
+  border: 1px solid var(--launcher-border);
+}
+
+[lang='ar'] .launcher-hero__subtitle,
+[lang='ar'] .launcher-hero__supporting,
+[lang='ar'] .launcher-shortcuts__item,
+[lang='ar'] .launcher-empty,
+[lang='ar'] .launcher-community__subtitle {
+  text-align: right;
+}
+
+:root[data-theme='light'] {
+  --launcher-bg: #eef0f7; --launcher-panel: rgba(248, 248, 252, 0.92); --launcher-elevated: #e2e4ef;
+  --launcher-border: rgba(139, 143, 170, 0.34); --launcher-border-strong: #c7cad9; --launcher-text: #252735;
+  --launcher-text-secondary: #41465f; --launcher-text-muted: #68708a;
+}
+:root[data-theme='light'] body { background: transparent; }
+:root[data-theme='light'] .launcher-shell { background: radial-gradient(circle at 15% 8%, rgba(109, 92, 231, 0.14), transparent 34%), linear-gradient(145deg, #eef0f7, #f6f6fa); border-color: var(--launcher-border); outline-color: rgba(255, 255, 255, 0.72); box-shadow: 0 20px 60px rgba(68, 67, 103, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.86); }
+:root[data-theme='light'] .launcher-btn--secondary,
+:root[data-theme='light'] .launcher-shortcuts__list,
+:root[data-theme='light'] .launcher-empty,
+:root[data-theme='light'] .launcher-row,
+:root[data-theme='light'] .launcher-community { background: var(--launcher-panel); border-color: var(--launcher-border); }
+:root[data-theme='light'] .launcher-btn--secondary:hover,
+:root[data-theme='light'] .launcher-btn--secondary:focus-visible,
+:root[data-theme='light'] .launcher-row:hover,
+:root[data-theme='light'] .launcher-row:focus-visible { background: color-mix(in srgb, var(--launcher-brand) 8%, var(--launcher-panel)); border-color: color-mix(in srgb, var(--launcher-brand) 28%, var(--launcher-border)); box-shadow: 0 8px 20px rgba(68, 67, 103, 0.1); }
+:root[data-theme='light'] .launcher-row__thumb { background: linear-gradient(145deg, rgba(109, 92, 231, 0.18), var(--launcher-elevated)); border-color: var(--launcher-border); }
+:root[data-theme='light'] .launcher-recents { scrollbar-color: rgba(89, 96, 120, 0.3) transparent; }
+:root[data-theme='light'] .launcher-recents::-webkit-scrollbar-thumb { background: rgba(89, 96, 120, 0.3); }
+/* Launcher polish: renderer fills the physical window edge-to-edge. */
+html, body, #root { background: transparent; }
+.launcher-shell { border-radius: var(--launcher-radius); border: 1px solid var(--launcher-border); outline: none; }
+.launcher-row__thumb { overflow: hidden; }
+.launcher-row__thumb-image, .launcher-row__thumb--veil img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+.launcher-row__thumb--veil img { object-fit: contain; padding: 0.2rem; }
+.launcher-row__thumb-icon--audio { width: 0.75rem; height: 0.9rem; border: 0; border-radius: 0; background: currentColor; clip-path: polygon(0 35%, 38% 35%, 100% 0, 100% 100%, 38% 65%, 0 65%); }
+.launcher-row__thumb-icon--audio::after { content: ''; left: 72%; top: 12%; width: 0.35rem; height: 0.76rem; border: 1.5px solid currentColor; border-left: 0; border-radius: 0 999px 999px 0; transform: none; }
+.launcher-filename { display: block; min-width: 0; overflow: hidden; white-space: nowrap; direction: ltr; }
+.launcher-filename__content { display: inline-flex; max-width: none; white-space: nowrap; unicode-bidi: plaintext; }
+.launcher-filename__extension { direction: ltr; unicode-bidi: isolate; }
+.launcher-filename--reveal:hover .launcher-filename__content,
+.launcher-filename--reveal:focus-within .launcher-filename__content { animation: launcher-filename-reveal 6s ease-in-out 0.45s 1 both; }
+@keyframes launcher-filename-reveal { 0%, 12% { transform: translateX(0); } 78%, 92% { transform: translateX(calc(var(--reveal-distance) * -1)); } 100% { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) { .launcher-filename--reveal:hover .launcher-filename__content, .launcher-filename--reveal:focus-within .launcher-filename__content { animation: none; } }
+html.motion-reduced .launcher-filename--reveal:hover .launcher-filename__content, html.motion-reduced .launcher-filename--reveal:focus-within .launcher-filename__content { animation: none; }

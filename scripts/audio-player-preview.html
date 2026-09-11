@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VEIL Audio Player Preview</title>
+  <link rel="stylesheet" href="../src/styles.css" />
+  <style>
+    html, body { margin: 0; width: 780px; height: 420px; overflow: hidden; }
+    body { display: flex; flex-direction: column; }
+  </style>
+</head>
+<body class="app app--ui-refresh-v1 app--desktop-shell app--audio-watch">
+  <main class="app-main app-main--audio-watch" style="flex:1;display:flex;min-height:0;">
+    <section class="audio-player" aria-label="Audio player">
+      <div class="audio-player__body">
+        <div class="audio-hero audio-hero--playing">
+          <div class="audio-hero__glow" aria-hidden></div>
+          <div class="audio-hero__waveform" aria-hidden>
+            <span class="audio-hero__wave-dot" style="--dot-y: 4px; --dot-phase: 0.1"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 8px; --dot-phase: 0.2"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 12px; --dot-phase: 0.3"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 6px; --dot-phase: 0.4"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 2px; --dot-phase: 0.5"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 10px; --dot-phase: 0.6"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 14px; --dot-phase: 0.7"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 7px; --dot-phase: 0.8"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 3px; --dot-phase: 0.9"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 9px; --dot-phase: 0.2"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 11px; --dot-phase: 0.35"></span>
+            <span class="audio-hero__wave-dot" style="--dot-y: 5px; --dot-phase: 0.45"></span>
+          </div>
+          <img src="../src/assets/veil-logo.png" alt="" class="audio-hero__logo" aria-hidden />
+          <div class="audio-hero__meta">
+            <span class="audio-hero__kind">AUDIO</span>
+            <span class="audio-hero__file">Albumaty.Com_alaa_alglad_ksh_llnaghyn.mp3</span>
+            <span class="audio-hero__time ltr-digits">0:36 / 1:45</span>
+          </div>
+        </div>
+        <div class="audio-transport-dock" dir="ltr">
+          <div class="audio-transport-dock__seek-row">
+            <span class="audio-transport-dock__time ltr-digits">0:36</span>
+            <label class="audio-transport-dock__seek">
+              <input type="range" min="0" max="105" step="0.1" value="36" />
+            </label>
+            <span class="audio-transport-dock__time audio-transport-dock__time--end ltr-digits">1:45</span>
+          </div>
+          <div class="audio-transport-dock__main-row">
+            <div class="audio-transport-dock__volume">
+              <button type="button" class="volume-control__btn" aria-label="Volume">🔊</button>
+            </div>
+            <div class="audio-transport-dock__playback">
+              <button type="button" class="audio-transport-dock__skip-btn" disabled aria-label="Previous">⏮</button>
+              <button type="button" class="audio-transport-dock__play" aria-label="Pause">⏸</button>
+              <button type="button" class="audio-transport-dock__skip-btn" disabled aria-label="Next">⏭</button>
+            </div>
+            <div class="audio-transport-dock__utilities">
+              <div class="playback-rate-control playback-rate-control--dock">
+                <select aria-label="Speed"><option>1×</option></select>
+              </div>
+              <div class="player-utility-controls player-utility-controls--dock">
+                <button type="button" class="player-utility-controls__btn player-utility-controls__btn--dock">CC</button>
+                <button type="button" class="player-utility-controls__btn player-utility-controls__btn--dock">VEIL</button>
+              </div>
+            </div>
+          </div>
+          <div class="audio-transport-dock__actions">
+            <button type="button" class="audio-transport-dock__action"><span class="audio-transport-dock__action-label">Mute</span><span class="audio-transport-dock__action-hint">U</span></button>
+            <button type="button" class="audio-transport-dock__action"><span class="audio-transport-dock__action-label">Skip</span><span class="audio-transport-dock__action-hint">K</span></button>
+            <button type="button" class="audio-transport-dock__action"><span class="audio-transport-dock__action-label">Bookmark</span><span class="audio-transport-dock__action-hint">B</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

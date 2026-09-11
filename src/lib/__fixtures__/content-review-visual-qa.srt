@@ -1,0 +1,35 @@
+1
+00:00:02,000 --> 00:00:04,000
+Welcome to the Content Review visual QA fixture.
+
+2
+00:00:07,000 --> 00:00:09,000
+That was a damn difficult decision.
+
+3
+00:00:12,000 --> 00:00:14,000
+The conversation moves to a neutral topic.
+
+4
+00:00:17,000 --> 00:00:19,000
+The report mentions sexual language in dialogue.
+
+5
+00:00:22,000 --> 00:00:24,000
+A weapon was found near the doorway.
+
+6
+00:00:27,000 --> 00:00:29,000
+هذا تقرير محلي عن drugs.
+
+7
+00:00:32,000 --> 00:00:34,000
+The speakers discuss ordinary travel plans.
+
+8
+00:00:37,000 --> 00:00:39,000
+Gambling is discussed as part of the story.
+
+9
+00:00:42,000 --> 00:00:44,000
+The conversation returns to a quiet ending.

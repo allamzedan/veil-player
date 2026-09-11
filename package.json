@@ -1,0 +1,64 @@
+{
+  "name": "veil-player",
+  "version": "0.8.0",
+  "description": "Non-normative desktop reference implementation for the VEIL interoperability specification.",
+  "author": "Allam Zedan",
+  "private": false,
+  "type": "module",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "css:check": "node --test scripts/check-css.test.mjs && node scripts/check-css.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
+    "dist": "npm run build && electron-builder --win nsis portable",
+    "icon": "powershell -ExecutionPolicy Bypass -File scripts/generate-icon.ps1",
+    "test": "vitest run",
+    "test:stress": "vitest run src/lib/trackSchema.test.ts src/lib/srtParser.test.ts src/lib/maskTransitions.test.ts src/lib/playbackHud.test.ts src/state/useHistoryStore.test.ts",
+    "test:outcomes": "vitest run src/lib/nativeDeletionEndToEnd.test.ts src/lib/settingsInteractionStack.test.ts src/lib/inspectorCollapseParity.test.ts src/lib/fullscreenZeroLayerCapabilities.test.ts src/lib/localMediaSeek.test.ts src/lib/subtitleResurrection.test.ts",
+    "qa": "npm run css:check && npm run typecheck && npm run test && npm run build",
+    "veil:gate": "node scripts/veil-gate.mjs",
+    "veil:checkpoint": "node scripts/veil-checkpoint.mjs",
+    "veil:validate:focused": "node scripts/veil-validate.mjs --focused",
+    "veil:validate": "node scripts/veil-validate.mjs",
+    "veil:artifact": "node scripts/veil-artifact.mjs",
+    "verify:build": "node scripts/verify-build.mjs",
+    "smoke:packaged": "npm run verify:build && powershell -ExecutionPolicy Bypass -File scripts/launch-smoke.ps1"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zod": "^3.25.76",
+    "zustand": "^5.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "@types/react": "^19.1.6",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.5.2",
+    "electron": "^36.4.0",
+    "electron-builder": "^26.0.12",
+    "electron-vite": "^3.1.0",
+    "postcss": "^8.5.14",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  },
+  "build": {
+    "extends": "electron-builder.yml"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/allamzedan/veil-player.git"
+  },
+  "homepage": "https://github.com/allamzedan/veil-player",
+  "bugs": {
+    "url": "https://github.com/allamzedan/veil-player/issues"
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  }
+}
