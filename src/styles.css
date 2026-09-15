@@ -8176,7 +8176,8 @@ html[dir='rtl'] .track-chip-menu {
   padding-inline: 0.15rem;
   font-size: 0.72rem;
   line-height: 1.15;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .inspector-panel__create-btn--mask {

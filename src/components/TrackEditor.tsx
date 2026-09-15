@@ -445,7 +445,7 @@ export default function TrackEditor({
           <button
             type="button"
             className="btn btn-ghost selected-item-editor__action-delete"
-            aria-label="Delete layer"
+            aria-label={t('layers.delete')}
             title={selectedItemType === 'mask' ? 'Delete mask' : selectedItemType === 'mute' ? 'Delete mute range' : 'Delete skip range'}
             disabled={readOnly}
             onClick={removeSelected}

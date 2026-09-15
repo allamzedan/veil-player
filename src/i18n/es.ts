@@ -1,3 +1,6 @@
+import completion from './completions/es'
+import semanticCorrections from './semanticCorrections'
+
 const es: Record<string, string> = {
   'common.close': 'Cerrar',
   'common.cancel': 'Cancelar',
@@ -293,7 +296,6 @@ const es: Record<string, string> = {
   'home.quickStart5': 'Espacio — Reproducir / Pausa',
   'home.quickStart6': 'Esc — Salir de pantalla completa',
   'home.dropHint': 'Suelta un video o archivo .veil aquí',
-  'home.recentVideos': 'Vídeos recientes',
   'home.recentTracks': 'Pistas recientes',
 
   'veilEdit.canvasTitle': 'VEIL Canvas',
@@ -698,7 +700,9 @@ const es: Record<string, string> = {
   'statusBar.layersPlural': '{count} capas',
   'statusBar.noVideo': 'No hay vídeo cargado',
 
-  'shortcutHelp.title': 'Atajos de teclado'
+  'shortcutHelp.title': 'Atajos de teclado',
+  ...completion,
+  ...semanticCorrections.es
 }
 
 export default es

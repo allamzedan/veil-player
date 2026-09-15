@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Modal from './Modal'
 import { CheckIcon, UploadFileIcon } from './icons'
 import type { VeilTrackStorePayload } from '../lib/trackSerialization'
+import { t } from '../i18n'
 import {
   compareSidecarItems,
   formatSidecarItem,
@@ -19,21 +20,27 @@ interface SidecarCompareDialogProps {
   onApply: (payload: Pick<VeilTrackStorePayload, 'masks' | 'mutes' | 'skips' | 'bookmarks'>) => void
 }
 
-const labels = { mask: 'Mask', mute: 'Mute', skip: 'Skip', bookmark: 'Bookmark' } as const
 type Filter = 'all' | 'new' | 'duplicate' | 'conflict'
+
+function typeLabel(type: 'mask' | 'mute' | 'skip' | 'bookmark'): string {
+  return type === 'mask' ? t('timeline.mask')
+    : type === 'mute' ? t('timeline.mute')
+      : type === 'skip' ? t('timeline.skip')
+        : t('bookmarks.defaultLabel')
+}
 
 function itemCount(payload: VeilTrackStorePayload): number {
   return payload.masks.length + payload.mutes.length + payload.skips.length + payload.bookmarks.length
 }
 
 function statusLabel(status: SidecarComparisonItem['status']): string {
-  return status === 'new' ? 'New' : status === 'duplicate' ? 'Already present' : 'Needs attention'
+  return status === 'new' ? t('sidecar.new') : status === 'duplicate' ? t('sidecar.alreadyPresent') : t('sidecar.needsAttention')
 }
 
 function conflictExplanation(entry: SidecarComparisonItem): string | null {
   if (entry.status !== 'conflict') return null
   const type = entry.relatedCurrentItem?.type ?? entry.item.type
-  return `Overlaps an existing ${labels[type]}.`
+  return t('sidecar.overlapExisting', { type: typeLabel(type) })
 }
 
 export default function SidecarCompareDialog({
@@ -93,16 +100,16 @@ export default function SidecarCompareDialog({
 
   const footer = (
     <div className="sidecar-compare-dialog__footer">
-      <span className="sidecar-compare-dialog__selected-count">{selectedCount} items selected for import</span>
+      <span className="sidecar-compare-dialog__selected-count">{t('sidecar.selectedCount', { count: selectedCount })}</span>
       <div className="sidecar-compare-dialog__footer-actions">
-        <button type="button" className="btn btn-ghost btn-compact" onClick={onCancel}>Cancel</button>
+        <button type="button" className="btn btn-ghost btn-compact" onClick={onCancel}>{t('common.cancel')}</button>
         <button
           type="button"
           className="btn btn-primary btn-compact"
           disabled={selectedCount === 0}
           onClick={() => onApply(selectedSidecarPayload(comparison, selectedIds))}
         >
-          Import selected ({selectedCount})
+          {t('sidecar.importSelected', { count: selectedCount })}
         </button>
       </div>
     </div>
@@ -111,13 +118,13 @@ export default function SidecarCompareDialog({
   return (
     <Modal
       open={open}
-      title="Compare / Import VEIL"
+      title={t('sidecar.title')}
       titleContent={(
         <span className="sidecar-compare-dialog__header">
           <UploadFileIcon size={22} className="sidecar-compare-dialog__title-icon" />
           <span className="sidecar-compare-dialog__header-copy">
-            <span>Compare / Import VEIL</span>
-            <small>The imported VEIL will be compared and selected items can be added without replacing the current VEIL.</small>
+            <span>{t('sidecar.title')}</span>
+            <small>{t('sidecar.intro')}</small>
           </span>
         </span>
       )}
@@ -126,22 +133,22 @@ export default function SidecarCompareDialog({
       footer={importableDifferences ? footer : (
         <div className="sidecar-compare-dialog__footer">
           <span />
-          <button type="button" className="btn btn-ghost btn-compact" onClick={onCancel}>Close</button>
+          <button type="button" className="btn btn-ghost btn-compact" onClick={onCancel}>{t('common.close')}</button>
         </div>
       )}
     >
       <div className="sidecar-compare-dialog">
-        <div className="sidecar-compare-dialog__summary" aria-label="Comparison summary">
-          <span><span>Current</span><strong>{summary.current}</strong></span>
-          <span><span>Imported</span><strong>{summary.imported}</strong></span>
-          <span className="sidecar-compare-dialog__summary--new"><span>New</span><strong>{summary.newItems}</strong></span>
-          <span><span>Already present</span><strong>{summary.duplicates}</strong></span>
-          <span className="sidecar-compare-dialog__summary--attention"><span>Needs attention</span><strong>{summary.conflicts}</strong></span>
+        <div className="sidecar-compare-dialog__summary" aria-label={t('sidecar.comparisonSummary')}>
+          <span><span>{t('sidecar.current')}</span><strong>{summary.current}</strong></span>
+          <span><span>{t('sidecar.imported')}</span><strong>{summary.imported}</strong></span>
+          <span className="sidecar-compare-dialog__summary--new"><span>{t('sidecar.new')}</span><strong>{summary.newItems}</strong></span>
+          <span><span>{t('sidecar.alreadyPresent')}</span><strong>{summary.duplicates}</strong></span>
+          <span className="sidecar-compare-dialog__summary--attention"><span>{t('sidecar.needsAttention')}</span><strong>{summary.conflicts}</strong></span>
         </div>
         {mediaWarning ? (
           <p className="sidecar-compare-dialog__warning">{mediaWarning}</p>
         ) : (
-          <p className="sidecar-compare-dialog__media-ok">Same media file</p>
+          <p className="sidecar-compare-dialog__media-ok">{t('sidecar.sameMedia')}</p>
         )}
         {importableDifferences ? (
           <>
@@ -152,14 +159,14 @@ export default function SidecarCompareDialog({
                   checked={comparison.items.some((entry) => entry.status === 'new') && comparison.items.filter((entry) => entry.status === 'new').every((entry) => selectedIds.has(entry.item.id))}
                   onChange={(event) => toggleNew(event.target.checked)}
                 />
-                Select all new items
+                {t('sidecar.selectAllNew')}
               </label>
-              <div className="sidecar-compare-dialog__filters" aria-label="Filter comparison">
+              <div className="sidecar-compare-dialog__filters" aria-label={t('sidecar.filterComparison')}>
                 {([
-                  ['all', 'All'],
-                  ['new', 'New'],
-                  ['duplicate', 'Already present'],
-                  ['conflict', 'Needs attention']
+                  ['all', t('contentReview.all')],
+                  ['new', t('sidecar.new')],
+                  ['duplicate', t('sidecar.alreadyPresent')],
+                  ['conflict', t('sidecar.needsAttention')]
                 ] as const).map(([value, label]) => (
                   <button key={value} type="button" className={filter === value ? 'is-active' : ''} onClick={() => setFilter(value)}>{label}</button>
                 ))}
@@ -168,7 +175,7 @@ export default function SidecarCompareDialog({
             <div className="sidecar-compare-dialog__list">
               {groups.map(({ type, entries }) => (
                 <section className="sidecar-compare-dialog__group" key={type}>
-                  <h3>{labels[type]}</h3>
+                  <h3>{typeLabel(type)}</h3>
                   {entries.map((entry) => (
                     <label className={`sidecar-compare-dialog__item sidecar-compare-dialog__item--${entry.status}`} key={entry.item.id}>
                       <input
@@ -186,17 +193,17 @@ export default function SidecarCompareDialog({
                   ))}
                 </section>
               ))}
-              {groups.length === 0 ? <p className="sidecar-compare-dialog__filtered-empty">No items match this filter.</p> : null}
+              {groups.length === 0 ? <p className="sidecar-compare-dialog__filtered-empty">{t('sidecar.noFilterMatch')}</p> : null}
             </div>
           </>
         ) : (
           <div className="sidecar-compare-dialog__empty">
             <div className="sidecar-compare-dialog__empty-heading">
               <CheckIcon size={20} className="sidecar-compare-dialog__empty-icon" />
-              <strong>Nothing new to import.</strong>
+              <strong>{t('sidecar.nothingNew')}</strong>
             </div>
-            <p>This VEIL matches the current sidecar.</p>
-            <small>All items in the imported VEIL are already present.</small>
+            <p>{t('sidecar.matchesCurrent')}</p>
+            <small>{t('sidecar.allPresent')}</small>
           </div>
         )}
       </div>

@@ -183,7 +183,7 @@ export default function TrackChip() {
         },
         {
           id: 'compareImport',
-          label: 'Compare / Import VEIL…',
+          label: `${t('sidecar.title')}…`,
           action: () => runAppMenuAction('compareImportSidecar')
         },
         {

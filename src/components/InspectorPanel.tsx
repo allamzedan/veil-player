@@ -90,7 +90,7 @@ export default function InspectorPanel({
   onActivateItem,
   onHide
 }: InspectorPanelProps) {
-  useLanguage()
+  const language = useLanguage()
   const { runIfAllowed } = useUnsavedChangesGuard()
   const tabPrefix = useId()
   const [activeView, setActiveView] = useState<InspectorTab>(() => {
@@ -912,23 +912,23 @@ export default function InspectorPanel({
               <div><dt>{t('details.saveState')}</dt><dd>{isTrackDirty ? t('details.unsaved') : t('details.saved')}</dd></div>
               <div><dt>{t('details.playbackStatus')}</dt><dd>{youtubeMedia ? (youtubePlaybackAvailable ? t('details.available') : t('details.unavailable')) : (mediaSource ? t('details.available') : t('details.unavailable'))}</dd></div>
             </dl>
-            {!youtubeMedia ? <p className="inspector-details__privacy">Local media — processed on this device.</p> : null}
+            {!youtubeMedia ? <p className="inspector-details__privacy">{t('details.localPrivacy')}</p> : null}
             {youtubeMedia ? (
               <>
                 <div className="inspector-details__primary-actions">
                   <button type="button" className="btn btn-secondary btn-compact" onClick={() => void window.veil?.openExternalUrl?.(youtubeMedia.canonicalUrl)}>
                     {t('youtube.openOnYouTube')}
                   </button>
-                  <button type="button" className="btn btn-ghost btn-compact" onClick={() => void copyLink()}>Copy Link</button>
+                  <button type="button" className="btn btn-ghost btn-compact" onClick={() => void copyLink()}>{t('details.copyLink')}</button>
                 </div>
-                <p className="inspector-details__privacy">YouTube — streamed through YouTube’s official player.</p>
-                {youtubeMetadata?.status === 'loading' ? <div className="inspector-details__loading" role="status"><span /> Loading video details…</div> : null}
+                <p className="inspector-details__privacy">{t('details.youtubePrivacy')}</p>
+                {youtubeMetadata?.status === 'loading' ? <div className="inspector-details__loading" role="status"><span /> {t('details.loadingVideo')}</div> : null}
                 <details className="inspector-details__disclosure">
-                  <summary>Description</summary>
+                  <summary>{t('details.description')}</summary>
                   {youtubeMetadata?.description ? <div className="youtube-description">
                     <YouTubeDescription text={youtubeMetadata.description} expanded={descriptionExpanded} onActivateLink={activateDescriptionLink} />
-                    <button type="button" className="btn btn-ghost btn-compact" onClick={() => setDescriptionExpanded((value) => !value)}>{descriptionExpanded ? 'Show Less' : 'Show More'}</button>
-                  </div> : youtubeMetadata?.status !== 'loading' ? <p>Additional YouTube details are unavailable.</p> : null}
+                    <button type="button" className="btn btn-ghost btn-compact" onClick={() => setDescriptionExpanded((value) => !value)}>{descriptionExpanded ? t('details.showLess') : t('details.showMore')}</button>
+                  </div> : youtubeMetadata?.status !== 'loading' ? <p>{t('details.youtubeUnavailable')}</p> : null}
                 </details>
               </>
             ) : null}
@@ -937,22 +937,22 @@ export default function InspectorPanel({
               <dl>
                 {youtubeMedia ? <>
                   <div><dt>{t('youtube.fieldProvider')}</dt><dd>YouTube</dd></div>
-                  {youtubeMetadata?.channelTitle ? <div><dt>Channel</dt><dd>{youtubeMetadata.channelTitle}</dd></div> : null}
-                  {youtubeMetadata?.publishedAt ? <div><dt>Published</dt><dd>{new Date(youtubeMetadata.publishedAt).toLocaleDateString()}</dd></div> : null}
+                  {youtubeMetadata?.channelTitle ? <div><dt>{t('details.channel')}</dt><dd>{youtubeMetadata.channelTitle}</dd></div> : null}
+                  {youtubeMetadata?.publishedAt ? <div><dt>{t('details.published')}</dt><dd>{new Date(youtubeMetadata.publishedAt).toLocaleDateString(language)}</dd></div> : null}
                   <div><dt>{t('youtube.fieldUrl')}</dt><dd className="ltr-digits">{youtubeMedia.canonicalUrl}</dd></div>
                 </> : <>
                   <div><dt>{t('details.fileName')}</dt><dd>{videoFileName || videoMetadata?.name || '—'}</dd></div>
                   {videoFilePath ? <div><dt>{t('details.localPath')}</dt><dd>{videoFilePath}</dd></div> : null}
                 </>}
               </dl>
-              {youtubeMedia && youtubeMetadata?.source === 'youtube-data-api' ? <p className="inspector-details__privacy">Video details retrieved from YouTube.</p> : null}
+              {youtubeMedia && youtubeMetadata?.source === 'youtube-data-api' ? <p className="inspector-details__privacy">{t('details.retrievedFromYoutube')}</p> : null}
             </details>
             <details className="inspector-details__disclosure">
               <summary>{t('inspector.advanced')}</summary>
               <dl>
                 {youtubeMedia ? <div><dt>{t('youtube.fieldVideoId')}</dt><dd className="ltr-digits">{youtubeMedia.videoId}</dd></div> : null}
-                {youtubeMedia ? <div><dt>Metadata source</dt><dd>{youtubeMetadata?.source ?? 'saved-veil'}</dd></div> : null}
-                {youtubeMedia && typeof youtubeMedia.duration === 'number' ? <div><dt>Saved duration</dt><dd className="ltr-digits">{formatSeconds(youtubeMedia.duration)}</dd></div> : null}
+                {youtubeMedia ? <div><dt>{t('details.metadataSource')}</dt><dd>{youtubeMetadata?.source ?? 'saved-veil'}</dd></div> : null}
+                {youtubeMedia && typeof youtubeMedia.duration === 'number' ? <div><dt>{t('details.savedDuration')}</dt><dd className="ltr-digits">{formatSeconds(youtubeMedia.duration)}</dd></div> : null}
                 {trackFilePath ? <div><dt>{t('details.activeVeilPath')}</dt><dd>{trackFilePath}</dd></div> : null}
               </dl>
             </details>

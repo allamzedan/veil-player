@@ -1,3 +1,6 @@
+import completion from './completions/ja'
+import semanticCorrections from './semanticCorrections'
+
 const ja: Record<string, string> = {
   'common.close': '閉じる',
   'common.cancel': 'キャンセル',
@@ -293,7 +296,6 @@ const ja: Record<string, string> = {
   'home.quickStart5': 'Space — 再生 / 一時停止',
   'home.quickStart6': 'Esc — 全画面を終了',
   'home.dropHint': 'ここに動画または .veil ファイルをドロップ',
-  'home.recentVideos': '最近の動画',
   'home.recentTracks': '最近のトラック',
 
   'veilEdit.canvasTitle': 'VEIL Canvas',
@@ -696,7 +698,9 @@ const ja: Record<string, string> = {
   'statusBar.layersPlural': '{count} レイヤー',
   'statusBar.noVideo': '動画が読み込まれていません',
 
-  'shortcutHelp.title': 'キーボードショートカット'
+  'shortcutHelp.title': 'キーボードショートカット',
+  ...completion,
+  ...semanticCorrections.ja
 }
 
 export default ja

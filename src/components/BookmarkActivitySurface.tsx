@@ -127,7 +127,7 @@ export default function BookmarkActivitySurface({
         )}
         <span className="bookmark-activity-surface__actions">
           {onSaveDetails ? <button type="button" onClick={beginEditing} disabled={isEditing} aria-label="Edit bookmark details" title="Edit bookmark details"><EditIcon /></button> : null}
-          {onDelete ? <button type="button" onClick={onDelete} aria-label="Delete bookmark" title="Delete bookmark"><TrashIcon /></button> : null}
+          {onDelete ? <button type="button" onClick={onDelete} aria-label={t('bookmarks.delete')} title={t('bookmarks.delete')}><TrashIcon /></button> : null}
           <button type="button" onClick={onDismiss} aria-label="Dismiss bookmark" title="Dismiss bookmark"><span aria-hidden>×</span></button>
         </span>
       </div>

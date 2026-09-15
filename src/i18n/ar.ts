@@ -1,3 +1,6 @@
+import completion from './completions/ar'
+import semanticCorrections from './semanticCorrections'
+
 const ar: Record<string, string> = {
   'common.close': 'إغلاق',
   'common.cancel': 'إلغاء',
@@ -292,7 +295,6 @@ const ar: Record<string, string> = {
   'home.quickStart5': 'مسافة — تشغيل / إيقاف',
   'home.quickStart6': 'Esc — الخروج من ملء الشاشة',
   'home.dropHint': 'أسقط فيديو أو ملف .veil هنا',
-  'home.recentVideos': 'فيديوهات حديثة',
   'home.recentTracks': 'مسارات حديثة',
 
   'veilEdit.canvasTitle': 'VEIL Canvas',
@@ -695,7 +697,9 @@ const ar: Record<string, string> = {
   'statusBar.layersPlural': '{count} طبقات',
   'statusBar.noVideo': 'لا يوجد فيديو محمّل',
 
-  'shortcutHelp.title': 'اختصارات لوحة المفاتيح'
+  'shortcutHelp.title': 'اختصارات لوحة المفاتيح',
+  ...completion,
+  ...semanticCorrections.ar
 }
 
 export default ar

@@ -26,22 +26,24 @@ describe('VEIL compare/import QA polish', () => {
 
   it('uses the compact production wording and semantic import icon', () => {
     const dialog = read('../components/SidecarCompareDialog.tsx')
-    expect(dialog).toContain('The imported VEIL will be compared and selected items can be added without replacing the current VEIL.')
+    const english = read('../i18n/en.ts')
+    expect(dialog).toContain("t('sidecar.intro')")
+    expect(english).toContain("'sidecar.intro': 'The imported VEIL will be compared and selected items can be added without replacing the current VEIL.'")
     expect(dialog).toContain('<UploadFileIcon')
     expect(dialog).toContain('<CheckIcon')
-    expect(dialog).toContain('New')
-    expect(dialog).toContain('Already present')
-    expect(dialog).toContain('Needs attention')
-    expect(dialog).toContain('Overlaps an existing')
+    expect(dialog).toContain("t('sidecar.new')")
+    expect(dialog).toContain("t('sidecar.alreadyPresent')")
+    expect(dialog).toContain("t('sidecar.needsAttention')")
+    expect(dialog).toContain("t('sidecar.overlapExisting'")
   })
 
   it('renders the compact same-VEIL empty state with Close-only footer', () => {
     const dialog = read('../components/SidecarCompareDialog.tsx')
-    expect(dialog).toContain('Nothing new to import.')
-    expect(dialog).toContain('This VEIL matches the current sidecar.')
-    expect(dialog).toContain('All items in the imported VEIL are already present.')
+    expect(dialog).toContain("t('sidecar.nothingNew')")
+    expect(dialog).toContain("t('sidecar.matchesCurrent')")
+    expect(dialog).toContain("t('sidecar.allPresent')")
     expect(dialog).toContain('sidecar-compare-dialog__empty-heading')
-    expect(dialog).toContain('>Close</button>')
+    expect(dialog).toContain("{t('common.close')}</button>")
     expect(dialog).not.toContain('The VEIL was already added')
   })
 
@@ -56,9 +58,11 @@ describe('VEIL compare/import QA polish', () => {
 
   it('keeps media compatibility messaging compact and non-mutating', () => {
     const dialog = read('../components/SidecarCompareDialog.tsx')
-    expect(dialog).toContain('Same media file')
+    const english = read('../i18n/en.ts')
+    expect(dialog).toContain("t('sidecar.sameMedia')")
+    expect(english).toContain("'sidecar.sameMedia': 'Same media file'")
     expect(dialog).toContain('mediaWarning')
-    expect(dialog).toContain('without replacing the current VEIL.')
+    expect(english).toContain('without replacing the current VEIL.')
   })
 
   it('clears selection after normal VEIL load while retaining mask rendering state', () => {

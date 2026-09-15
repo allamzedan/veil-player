@@ -1,3 +1,6 @@
+import completion from './completions/tr'
+import semanticCorrections from './semanticCorrections'
+
 const tr: Record<string, string> = {
   'common.close': 'Kapat',
   'common.cancel': 'İptal',
@@ -293,7 +296,6 @@ const tr: Record<string, string> = {
   'home.quickStart5': 'Boşluk — Oynat / Duraklat',
   'home.quickStart6': 'Esc — Tam ekrandan çık',
   'home.dropHint': 'Buraya bir video veya .veil dosyası bırakın',
-  'home.recentVideos': 'Son videolar',
   'home.recentTracks': 'Son parçalar',
 
   'veilEdit.canvasTitle': 'VEIL Canvas',
@@ -698,7 +700,9 @@ const tr: Record<string, string> = {
   'statusBar.layersPlural': '{count} katman',
   'statusBar.noVideo': 'Video yüklenmedi',
 
-  'shortcutHelp.title': 'Klavye kısayolları'
+  'shortcutHelp.title': 'Klavye kısayolları',
+  ...completion,
+  ...semanticCorrections.tr
 }
 
 export default tr

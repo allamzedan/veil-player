@@ -76,7 +76,7 @@ describe('Overview horizontal Create alignment', () => {
     expect(manage).toContain('trackTools.map((item)')
     expect(manage).toContain('onClick={item.action}')
     expect(styles).toMatch(/\.inspector-panel__manage-actions\s*\{[^}]*grid-template-columns: repeat\(2, minmax\(0, 1fr\)\);/s)
-    expect(styles).toMatch(/\.inspector-panel__manage-button\s*\{[^}]*width: 100%;[^}]*white-space: nowrap;/s)
+    expect(styles).toMatch(/\.inspector-panel__manage-button\s*\{[^}]*width: 100%;[^}]*white-space: normal;[^}]*overflow-wrap: anywhere;/s)
     expect(styles).toMatch(/\.app--ui-refresh-v1 \.inspector-panel__manage-button\s*\{[^}]*padding-inline: 0\.15rem;[^}]*font-size: 0\.72rem;/s)
     expect(styles).not.toMatch(/\.inspector-panel__manage-button:last-child\s*\{[^}]*grid-column: 1 \/ -1;/s)
   })

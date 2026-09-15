@@ -1,5 +1,6 @@
 import { formatSeconds } from '../lib/time'
 import { sortNavigationItems, type ChapterNavigationItem } from '../lib/bookmarkNavigation'
+import { t } from '../i18n'
 
 export default function ChapterNavigationList({
   chapters,
@@ -10,8 +11,8 @@ export default function ChapterNavigationList({
 }) {
   if (chapters.length === 0) return null
   return (
-    <section className="chapter-navigation" aria-label="Chapters">
-      <h3 className="navigate-group-title">Chapters</h3>
+    <section className="chapter-navigation" aria-label={t('chapters.title')}>
+      <h3 className="navigate-group-title">{t('chapters.title')}</h3>
       <ul className="bookmark-navigation__list">
         {sortNavigationItems(chapters).map((chapter) => (
           <li key={chapter.id} className="bookmark-navigation__item">
@@ -24,7 +25,7 @@ export default function ChapterNavigationList({
               <span className="bookmark-navigation__timestamp ltr-digits">{formatSeconds(chapter.start)}</span>
               <span className="bookmark-navigation__text">
                 <strong>{chapter.title}</strong>
-                <small>{chapter.source === 'youtube' ? 'YouTube chapter' : 'VEIL chapter'}</small>
+                <small>{chapter.source === 'youtube' ? t('chapters.youtube') : t('chapters.veil')}</small>
               </span>
             </button>
           </li>

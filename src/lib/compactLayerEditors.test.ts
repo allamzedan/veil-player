@@ -51,15 +51,15 @@ describe('shared compact layer editors', () => {
     expect(bookmarkEditorSource).toMatch(/selected-item-editor__timestamp-pill/)
     expect(bookmarkEditorSource).not.toMatch(/track-editor__input--timing/)
     expect(bookmarkEditorSource).toMatch(/rows=\{3\}/)
-    expect(bookmarkEditorSource).toMatch(/aria-label="Delete layer"/)
-    expect(bookmarkEditorSource).toMatch(/title="Delete bookmark"/)
+    expect(bookmarkEditorSource).toContain("aria-label={t('layers.delete')}")
+    expect(bookmarkEditorSource).toContain("title={t('bookmarks.delete')}")
   })
 
   it('integrates shared timing, compact mask disclosures, and trash in range editors', () => {
     expect(trackEditorSource).toMatch(/<CompactRangeTiming\b/)
     expect(trackEditorSource).toMatch(/<MaskStyleControls\b/)
     expect(trackEditorSource).toMatch(/selected-item-editor__actions--footer/)
-    expect(trackEditorSource).toMatch(/aria-label="Delete layer"/)
+    expect(trackEditorSource).toContain("aria-label={t('layers.delete')}")
     expect(maskStyleSource).toMatch(/mask-style-controls__appearance-grid/)
     expect(maskStyleSource).toMatch(/aria-valuetext=\{`\$\{opacityPercent\}%`\}/)
     expect(maskStyleSource).toMatch(/aria-expanded=\{presentationOpen\}/)

@@ -142,11 +142,11 @@ export default function BookmarkItemEditor({
             <button
               type="button"
               className="btn btn-secondary btn-compact selected-item-editor__go"
-              aria-label="Go to bookmark"
+              aria-label={t('bookmarks.goTo')}
               onClick={() => onGoToPosition(bookmark.start, bookmark.id)}
             >
               <GoToPositionIcon />
-              <span>Go to Bookmark</span>
+              <span>{t('bookmarks.goTo')}</span>
             </button>
           ) : null}
           <button type="button" className="btn btn-compact" disabled={isLocked} onClick={apply}>
@@ -160,8 +160,8 @@ export default function BookmarkItemEditor({
           <button
             type="button"
             className="btn btn-ghost selected-item-editor__action-delete"
-            aria-label="Delete layer"
-            title="Delete bookmark"
+            aria-label={t('layers.delete')}
+            title={t('bookmarks.delete')}
             onClick={remove}
           >
             <TrashIcon />

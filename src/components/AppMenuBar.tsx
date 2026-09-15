@@ -575,7 +575,7 @@ export default function AppMenuBar({
           label: t('menu.track'),
           items: [
             { id: 'loadTrack', label: t('menu.loadTrack'), action: () => run('loadTrack') },
-            { id: 'compareImportSidecar', label: 'Compare / Import VEIL…', action: () => run('compareImportSidecar') },
+            { id: 'compareImportSidecar', label: `${t('sidecar.title')}…`, action: () => run('compareImportSidecar') },
             menuSeparator(),
             {
               id: 'saveTrack',
@@ -774,7 +774,7 @@ export default function AppMenuBar({
         label: t('menu.track'),
         items: [
           { id: 'loadTrack', label: t('menu.loadTrack'), action: () => run('loadTrack') },
-          { id: 'compareImportSidecar', label: 'Compare / Import VEIL…', action: () => run('compareImportSidecar') },
+          { id: 'compareImportSidecar', label: `${t('sidecar.title')}…`, action: () => run('compareImportSidecar') },
           menuSeparator(),
           {
             id: 'saveTrack',

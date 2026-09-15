@@ -109,14 +109,14 @@ export default function OpenYouTubeDialog({ open, onClose, onLoad }: OpenYouTube
         ) : null}
         <label className={'open-youtube-dialog__consent'}>
           <input type={'checkbox'} checked={accepted} onChange={(event) => setAccepted(event.target.checked)} />
-          <span>I agree to the VEIL Player privacy policy and understand that using YouTube means I agree to the YouTube Terms of Service.</span>
+          <span>{t('youtube.consent')}</span>
         </label>
         <p className={'open-youtube-dialog__policy-links'}>
-          <button type={'button'} className={'link-button'} onClick={() => openPolicy(VEIL_PRIVACY_POLICY_URL)}>Privacy policy</button>
+          <button type={'button'} className={'link-button'} onClick={() => openPolicy(VEIL_PRIVACY_POLICY_URL)}>{t('youtube.privacyPolicy')}</button>
           {' · '}
-          <button type={'button'} className={'link-button'} onClick={() => openPolicy(YOUTUBE_TERMS_URL)}>YouTube Terms</button>
+          <button type={'button'} className={'link-button'} onClick={() => openPolicy(YOUTUBE_TERMS_URL)}>{t('youtube.terms')}</button>
           {' · '}
-          <button type={'button'} className={'link-button'} onClick={() => openPolicy(GOOGLE_PRIVACY_POLICY_URL)}>Google Privacy Policy</button>
+          <button type={'button'} className={'link-button'} onClick={() => openPolicy(GOOGLE_PRIVACY_POLICY_URL)}>{t('youtube.googlePrivacy')}</button>
         </p>
       </form>
     </Modal>

@@ -1,3 +1,6 @@
+import completion from './completions/de'
+import semanticCorrections from './semanticCorrections'
+
 const de: Record<string, string> = {
   'common.close': 'Schließen',
   'common.cancel': 'Abbrechen',
@@ -293,7 +296,6 @@ const de: Record<string, string> = {
   'home.quickStart5': 'Leertaste — Wiedergabe / Pause',
   'home.quickStart6': 'Esc — Vollbild beenden',
   'home.dropHint': 'Video oder .veil-Datei hier ablegen',
-  'home.recentVideos': 'Zuletzt geöffnete Videos',
   'home.recentTracks': 'Zuletzt verwendete Spuren',
 
   'veilEdit.canvasTitle': 'VEIL Canvas',
@@ -698,7 +700,9 @@ const de: Record<string, string> = {
   'statusBar.layersPlural': '{count} Ebenen',
   'statusBar.noVideo': 'Kein Video geladen',
 
-  'shortcutHelp.title': 'Tastenkürzel'
+  'shortcutHelp.title': 'Tastenkürzel',
+  ...completion,
+  ...semanticCorrections.de
 }
 
 export default de

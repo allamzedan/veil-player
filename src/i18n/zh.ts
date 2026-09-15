@@ -1,3 +1,6 @@
+import completion from './completions/zh'
+import semanticCorrections from './semanticCorrections'
+
 const zh: Record<string, string> = {
   'common.close': '关闭',
   'common.cancel': '取消',
@@ -292,7 +295,6 @@ const zh: Record<string, string> = {
   'home.quickStart5': '空格 — 播放 / 暂停',
   'home.quickStart6': 'Esc — 退出全屏',
   'home.dropHint': '将视频或 .veil 文件拖放到此处',
-  'home.recentVideos': '最近视频',
   'home.recentTracks': '最近轨道',
 
   'veilEdit.canvasTitle': 'VEIL Canvas',
@@ -695,7 +697,9 @@ const zh: Record<string, string> = {
   'statusBar.layersPlural': '{count} 个图层',
   'statusBar.noVideo': '未加载视频',
 
-  'shortcutHelp.title': '键盘快捷键'
+  'shortcutHelp.title': '键盘快捷键',
+  ...completion,
+  ...semanticCorrections.zh
 }
 
 export default zh
