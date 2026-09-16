@@ -1,12 +1,16 @@
 # VEIL Player Desktop
 
-**Release candidate: VEIL Player Desktop 0.8.0-RC2**
+**VEIL Player Desktop 0.8.0-RC2**
 
 VEIL Player Desktop is a local-first Windows media player and a **non-normative reference implementation** of the [VEIL interoperability specification](https://github.com/allamzedan/veil). It applies separate `.veil` playback instructions without modifying the source media.
 
 The canonical VEIL specification remains authoritative over implementation behavior. This repository contains application source, not normative VEIL material.
 
 Sibling implementation: [VEIL Player Mobile](https://github.com/allamzedan/veil-player-mobile).
+
+<p align="center">
+  <img src="docs/images/veil-player-desktop.png" alt="VEIL Player Desktop" width="1200">
+</p>
 
 ## Conformance status
 
