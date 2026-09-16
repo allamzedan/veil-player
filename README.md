@@ -6,7 +6,7 @@ VEIL Player Desktop is a local-first Windows media player and a **non-normative 
 
 The canonical VEIL specification remains authoritative over implementation behavior. This repository contains application source, not normative VEIL material.
 
-Sibling implementation: [VEIL Mobile](https://github.com/allamzedan/veil-mobile).
+Sibling implementation: [VEIL Player Mobile](https://github.com/allamzedan/veil-player-mobile).
 
 ## Conformance status
 
