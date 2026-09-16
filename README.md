@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/images/veil-player-logo.png" alt="VEIL Player" width="220">
+</p>
+
 # VEIL Player Desktop
 
 **VEIL Player Desktop 0.8.0-RC2**
