@@ -1,6 +1,11 @@
 # Localization
 
-VEIL Player Desktop uses English (`en`) as its source and fallback locale. The supported UI locales are Arabic (`ar`), Spanish (`es`), French (`fr`), German (`de`), Turkish (`tr`), Simplified Chinese (`zh`), and Japanese (`ja`). Arabic uses right-to-left document direction; timeline coordinates, paths, URLs, identifiers, and time values remain left-to-right where required.
+The current release candidate includes production-ready localization for
+English (`en`), Arabic (`ar`), Spanish (`es`), French (`fr`), German (`de`),
+Turkish (`tr`), Simplified Chinese (`zh`), and Japanese (`ja`). English is the
+source and fallback locale. Arabic uses right-to-left document direction;
+timeline coordinates, paths, URLs, identifiers, and time values remain
+left-to-right where required.
 
 Translations live in `src/i18n`. When adding or changing English text, update every supported locale in the same change. Preserve interpolation tokens such as `{count}`, `{name}`, and `{path}` exactly, while moving them as needed for natural word order. Keep `VEIL`, `VEIL Player`, `VEIL Spec`, schema keys, file extensions, URLs, and provider names unchanged.
 

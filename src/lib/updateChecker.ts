@@ -2,7 +2,7 @@ import { APP_VERSION } from './appVersion'
 
 /** Public version metadata only — no telemetry or user data is sent. */
 export const UPDATE_CHECK_URL =
-  'https://raw.githubusercontent.com/allamzedan/veilplayer/main/update.json'
+  'https://raw.githubusercontent.com/allamzedan/veil-player/main/update.json'
 
 const LAST_CHECK_KEY = 'veil:lastUpdateCheckAt'
 const CHECK_INTERVAL_MS = 24 * 60 * 60 * 1000

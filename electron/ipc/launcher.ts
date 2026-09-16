@@ -20,7 +20,7 @@ export interface LauncherController {
   getLauncherWindow: () => BrowserWindow | null
 }
 
-const RELEASE_NOTES_URL = 'https://github.com/allamzedan/veilplayer/releases'
+const RELEASE_NOTES_URL = 'https://github.com/allamzedan/veil-player/releases'
 
 function pathExists(filePath: string): boolean {
   try {

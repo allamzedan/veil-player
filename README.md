@@ -6,6 +6,8 @@ VEIL Player Desktop is a local-first Windows media player and a **non-normative 
 
 The canonical VEIL specification remains authoritative over implementation behavior. This repository contains application source, not normative VEIL material.
 
+Sibling implementation: [VEIL Mobile](https://github.com/allamzedan/veil-mobile).
+
 ## Conformance status
 
 The current source was validated against **VEIL Spec 0.1 — Experimental**. VEIL Player Desktop conforms to VEIL Spec 0.1 for its claimed capability scope based on the final validation evidence: 113/113 frozen corpus vectors passed, with zero failures or untestable results, and the direct coverage-gap tests passed.
@@ -93,6 +95,8 @@ Do not commit API keys, personal media, generated packages, logs, or local envir
 ## Licensing
 
 Copyright 2026 Allam Zedan
+
+Public contact: [allamzedan@live.com](mailto:allamzedan@live.com)
 
 VEIL Player Desktop source is licensed under the [Apache License 2.0](LICENSE).
 

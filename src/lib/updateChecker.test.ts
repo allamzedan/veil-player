@@ -29,14 +29,14 @@ describe('updateChecker', () => {
       version: '0.7.0',
       title: 'VEIL Player 0.7.0 is available',
       notes: ['One', 'Two'],
-      url: 'https://github.com/allamzedan/veilplayer/releases/latest'
+      url: 'https://github.com/allamzedan/veil-player/releases/latest'
     })
 
     expect(info).toEqual({
       version: '0.7.0',
       title: 'VEIL Player 0.7.0 is available',
       notes: ['One', 'Two'],
-      url: 'https://github.com/allamzedan/veilplayer/releases/latest'
+      url: 'https://github.com/allamzedan/veil-player/releases/latest'
     })
   })
 
