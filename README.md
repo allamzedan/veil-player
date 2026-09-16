@@ -6,7 +6,7 @@
 
 **VEIL Player Desktop 0.8.0-RC2**
 
-VEIL Player Desktop is a local-first Windows media player and a **non-normative reference implementation** of the [VEIL interoperability specification](https://github.com/allamzedan/veil). It applies separate `.veil` playback instructions without modifying the source media.
+VEIL Player Desktop is a local-first Windows media player and an open-source, **non-normative Desktop implementation** of the [VEIL interoperability specification](https://github.com/allamzedan/veil). It applies separate `.veil` playback instructions without modifying the source media.
 
 The canonical VEIL specification remains authoritative over implementation behavior. This repository contains application source, not normative VEIL material.
 
@@ -70,19 +70,13 @@ npm run dist
 
 Packaging may download Electron/electron-builder support archives. Generated packages belong in release artifacts, not source history. Official binaries, if released, will be distributed separately through GitHub Releases with the applicable third-party notices. Official binary releases are built only from a reviewed dependency state and receive artifact-level security and license validation before distribution.
 
-## YouTube provider configuration
+## Optional YouTube provider
 
-The source contains an optional, technically validated YouTube provider integration. The official 0.8.0-RC2 Windows binary is built with that provider disabled pending provider-policy confirmation. Technical validation does not imply provider distribution permission.
+The source includes optional YouTube provider integration. Provider-disabled production builds are the default, and the planned 0.8.0-RC2 distribution does not enable the provider.
 
-Provider-disabled production builds are the default: run `npm run dist`.
+Provider-enabled builds are intended for development/testing and remain subject to applicable YouTube policies and separate provider-compliance requirements. VEIL itself is provider-independent.
 
-Developer/local provider builds require `VEIL_ENABLE_YOUTUBE_PROVIDER=true` at build time. Any provider-enabled build remains subject to applicable YouTube policies. No provider credential is included.
-
-Optional metadata access reads the API key only from the `VEIL_YOUTUBE_DATA_API_KEY` environment variable. Never commit a literal key or an environment file.
-
-Provider functionality uses YouTube APIs/services and is subject to YouTube's applicable terms and policies. The project is not endorsed by YouTube or Google. Provider-enabled binary distribution remains subject to a separate provider-compliance review; this source candidate does not claim that review is complete.
-
-YouTube support is optional and the canonical VEIL standard is independent of it. Without a Data API key, IFrame playback remains available but Data API descriptions and Made-for-Kids lookup are unavailable. Provider use requires acknowledgement of the [VEIL Player privacy policy](PRIVACY.md) and the [YouTube Terms of Service](https://www.youtube.com/t/terms); Google's handling of data is described by the [Google Privacy Policy](https://policies.google.com/privacy). YouTube-derived display metadata is transient and is not stored in recent history. Mask and all visual overlays remain unavailable over the YouTube player. Timeline Skip and Mute use documented IFrame API controls, but their automated product-specific use remains **PROVIDER CONFIRMATION REQUIRED**; no YouTube or Google approval or endorsement is claimed.
+See the privacy policy and provider documentation for details.
 
 ## Security and privacy
 
