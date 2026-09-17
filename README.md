@@ -13,7 +13,7 @@ The canonical VEIL specification remains authoritative over implementation behav
 Sibling implementation: [VEIL Player Mobile](https://github.com/allamzedan/veil-player-mobile).
 
 <p align="center">
-  <img src="docs/images/veil-player-desktop.png" alt="VEIL Player Desktop" width="1200">
+  <img src="docs/images/veil-player-desktop-screenshot.png" alt="VEIL Player Desktop" width="1200">
 </p>
 
 ## Conformance status
