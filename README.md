@@ -12,6 +12,15 @@ The canonical VEIL specification remains authoritative over implementation behav
 
 Sibling implementation: [VEIL Player Mobile](https://github.com/allamzedan/veil-player-mobile).
 
+## Download
+
+**Current release candidate:** [VEIL Player Desktop 0.8.0-RC2](https://github.com/allamzedan/veil-player/releases/tag/v0.8.0-rc.2)
+
+Available for Windows as:
+
+- **Installer** — standard Windows installation.
+- **Portable** — run VEIL Player without installation.
+
 <p align="center">
   <img src="docs/images/veil-player-desktop-screenshot.png" alt="VEIL Player Desktop" width="1200">
 </p>
@@ -68,11 +77,13 @@ To produce Windows installer and portable artifacts locally:
 npm run dist
 ```
 
-Packaging may download Electron/electron-builder support archives. Generated packages belong in release artifacts, not source history. Official binaries, if released, will be distributed separately through GitHub Releases with the applicable third-party notices. Official binary releases are built only from a reviewed dependency state and receive artifact-level security and license validation before distribution.
+Packaging may download Electron/electron-builder support archives. Generated packages belong in release artifacts, not source history. Official binaries are distributed through [GitHub Releases](https://github.com/allamzedan/veil-player/releases) with the applicable third-party notices. Official binary releases are built only from a reviewed dependency state and receive artifact-level security and license validation before distribution.
 
 ## Optional YouTube provider
 
-The source includes optional YouTube provider integration. Provider-disabled production builds are the default, and the planned 0.8.0-RC2 distribution does not enable the provider.
+## Optional YouTube provider
+
+The source includes optional YouTube provider integration. Provider-disabled production builds are the default, and the 0.8.0-RC2 distribution does not enable the provider.
 
 Provider-enabled builds are intended for development/testing and remain subject to applicable YouTube policies and separate provider-compliance requirements. VEIL itself is provider-independent.
 
