@@ -12,7 +12,7 @@ describe('About branding and version source', () => {
     expect(settings).toContain("import veilLogo from '../assets/veil-logo.png'")
     expect(settings).toContain('<img src={veilLogo} alt="" className="about-dialog__logo" />')
     expect(settings).toContain('>VEIL Player</h4>')
-    expect(APP_VERSION).toBe('0.8.0-rc.2')
+    expect(APP_VERSION).toBe('0.8.0-rc.3')
   })
 
   it('uses authoritative app and track schema constants in both About surfaces', () => {

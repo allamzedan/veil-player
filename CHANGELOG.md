@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.8.0-RC3
+
+- Provider-enabled showcase/testing distribution: the optional YouTube provider is enabled at packaging time with `VEIL_ENABLE_YOUTUBE_PROVIDER=true` for development, testing, interoperability demonstrations, and project showcase use. VEIL remains provider-independent; no YouTube or Google approval or endorsement is claimed.
+
 ## 0.8.0
 
 - Privacy-first, non-destructive `.veil` sidecars with Mask, Mute, Skip, and Bookmark authoring.

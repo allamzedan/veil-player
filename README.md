@@ -4,7 +4,7 @@
 
 # VEIL Player Desktop
 
-**VEIL Player Desktop 0.8.0-RC2**
+**VEIL Player Desktop 0.8.0-RC3**
 
 VEIL Player Desktop is a local-first Windows media player and an open-source, **non-normative Desktop implementation** of the [VEIL interoperability specification](https://github.com/allamzedan/veil). It applies separate `.veil` playback instructions without modifying the source media.
 
@@ -14,7 +14,7 @@ Sibling implementation: [VEIL Player Mobile](https://github.com/allamzedan/veil-
 
 ## Download
 
-**Current release candidate:** [VEIL Player Desktop 0.8.0-RC2](https://github.com/allamzedan/veil-player/releases/tag/v0.8.0-rc.2)
+**Current release candidate:** [VEIL Player Desktop 0.8.0-RC3](https://github.com/allamzedan/veil-player/releases/tag/v0.8.0-rc.3)
 
 Available for Windows as:
 
@@ -81,9 +81,15 @@ Packaging may download Electron/electron-builder support archives. Generated pac
 
 ## Optional YouTube provider
 
-The source includes optional YouTube provider integration. Provider-disabled production builds are the default, and the 0.8.0-RC2 distribution does not enable the provider.
+The source includes optional YouTube provider integration. The 0.8.0-RC3 distribution enables this provider for development, testing, interoperability demonstrations, and project showcase use.
 
-Provider-enabled builds are intended for development/testing and remain subject to applicable YouTube policies and separate provider-compliance requirements. VEIL itself is provider-independent.
+Provider-disabled builds remain the source default. RC3 is enabled only at packaging time with `VEIL_ENABLE_YOUTUBE_PROVIDER=true`; the build-time gate is not hard-coded in source. Provider-enabled builds remain subject to applicable YouTube policies and separate provider-compliance requirements. VEIL itself is provider-independent. This release does not claim YouTube or Google approval or endorsement.
+
+To package RC3 with the YouTube provider enabled in PowerShell:
+
+```powershell
+$env:VEIL_ENABLE_YOUTUBE_PROVIDER = 'true'; npm run dist
+```
 
 See the privacy policy and provider documentation for details.
 
