@@ -81,8 +81,6 @@ Packaging may download Electron/electron-builder support archives. Generated pac
 
 ## Optional YouTube provider
 
-## Optional YouTube provider
-
 The source includes optional YouTube provider integration. Provider-disabled production builds are the default, and the 0.8.0-RC2 distribution does not enable the provider.
 
 Provider-enabled builds are intended for development/testing and remain subject to applicable YouTube policies and separate provider-compliance requirements. VEIL itself is provider-independent.
